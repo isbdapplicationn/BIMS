@@ -1498,7 +1498,7 @@ function enterEditMode(id){
 function exitEditMode(silent){
   state.editingId = null;
   $('#formTitle').textContent = 'নতুন সম্মানিভোগী এন্ট্রি';
-  $('#btnSaveMain').innerHTML = ic('save')+   $('#btnSaveMain').innerHTML = ic('save')+'<span>সংরক্ষণ করুন</span> <kbd>Enter</kbd>';
+  $('#btnSaveMain').innerHTML = ic('save')+'<span>সংরক্ষণ করুন</span> <kbd>Enter</kbd>';
 
   $$('[data-save="same"],[data-save="new"]').forEach(b=>b.style.display='');
   $('#editBanner').innerHTML = '';
