@@ -1,0 +1,2222 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light only" />
+<meta name="theme-color" content="#065f46" />
+<meta name="referrer" content="no-referrer" />
+<title>সম্মানিভোগী তথ্য ব্যবস্থাপনা সিস্টেম | উপজেলা প্রশাসন, লোহাগড়া, নড়াইল</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   NI Studio Pro — Beneficiary Data Entry & Management System
+   Theme: Light + Deep Green Gradient (No dark mode)
+   ========================================================================== */
+:root{
+  --g-900:#052e1c; --g-800:#064e3b; --g-700:#065f46; --g-600:#047857;
+  --g-500:#059669; --g-400:#10b981; --g-100:#d1fae5; --g-050:#ecfdf5;
+  --t-800:#134e4a; --t-700:#0f766e; --t-600:#0d9488; --t-050:#f0fdfa;
+  --ink:#0f1f1a; --ink-2:#3c534b; --ink-3:#6b7f78;
+  --line:#dbe7e1; --line-2:#c7d8d1;
+  --bg:#f4f8f6; --card:#ffffff;
+  --danger:#b42318; --danger-bg:#fef3f2; --danger-line:#fda29b;
+  --warn:#b54708; --warn-bg:#fffaeb;
+  --ok:#067647;
+  --r-s:8px; --r-m:12px; --r-l:16px; --r-xl:22px;
+  --sh-1:0 1px 2px rgba(6,78,59,.06), 0 1px 3px rgba(6,78,59,.05);
+  --sh-2:0 4px 14px rgba(6,78,59,.08), 0 2px 4px rgba(6,78,59,.04);
+  --sh-3:0 12px 34px rgba(5,46,28,.16);
+  --bn:'Hind Siliguri','Noto Sans Bengali','Nikosh','SolaimanLipi','Nirmala UI',system-ui,sans-serif;
+  --en:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
+  --nav-h:64px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;max-width:100%;overflow-x:hidden}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--bn); color:var(--ink); background:var(--bg);
+  font-size:15.5px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+input,select,button,textarea{font-family:inherit;font-size:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--g-400);outline-offset:2px;border-radius:6px}
+.en{font-family:var(--en)}
+.ic{width:18px;height:18px;flex:0 0 auto;display:block}
+.ic-s{width:15px;height:15px}
+.ic-l{width:24px;height:24px}
+.ic-xl{width:30px;height:30px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------------- App shell ---------------- */
+.app{min-height:100dvh;display:flex;flex-direction:column}
+.hdr{
+  position:sticky;top:0;z-index:40;color:#fff;
+  background:linear-gradient(135deg,var(--g-900) 0%,var(--g-700) 55%,var(--g-600) 100%);
+  box-shadow:0 2px 14px rgba(5,46,28,.22);
+}
+.hdr-in{max-width:1400px;margin:0 auto;padding:10px 14px;display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:11px;min-width:0}
+.brand-mark{
+  width:42px;height:42px;flex:0 0 auto;border-radius:12px;display:grid;place-items:center;
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);
+}
+.brand-mark svg{width:24px;height:24px}
+.brand-txt{min-width:0}
+.brand-txt h1{margin:0;font-size:17px;font-weight:700;letter-spacing:.1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-txt p{margin:0;font-size:12px;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hdr-sp{flex:1}
+.icon-btn{
+  width:42px;height:42px;border-radius:12px;border:1px solid rgba(255,255,255,.28);
+  background:rgba(255,255,255,.12);color:#fff;display:grid;place-items:center;transition:background .16s,transform .16s;
+}
+.icon-btn:hover{background:rgba(255,255,255,.22)}
+.icon-btn:active{transform:scale(.96)}
+
+/* Desktop tabs */
+.tabs{display:none;max-width:1400px;margin:0 auto;padding:0 14px 10px}
+.tabs-in{display:flex;gap:6px;background:rgba(255,255,255,.12);padding:5px;border-radius:14px;border:1px solid rgba(255,255,255,.2)}
+.tab{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;border:0;border-radius:10px;
+  background:transparent;color:rgba(255,255,255,.9);font-weight:600;font-size:14.5px;transition:background .16s,color .16s;
+}
+.tab:hover{background:rgba(255,255,255,.14)}
+.tab.on{background:#fff;color:var(--g-800);box-shadow:var(--sh-1)}
+.tab kbd{font-family:var(--en);font-size:10.5px;padding:1px 5px;border-radius:5px;background:rgba(0,0,0,.12);border:0}
+.tab.on kbd{background:var(--g-050);color:var(--g-700)}
+
+main{flex:1;width:100%;max-width:1400px;margin:0 auto;padding:16px 14px calc(var(--nav-h) + 96px)}
+.panel{display:none}
+.panel.on{display:block;animation:fade .24s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* Bottom nav (mobile) */
+.bnav{
+  position:fixed;left:0;right:0;bottom:0;z-index:45;display:flex;
+  background:#fff;border-top:1px solid var(--line);
+  box-shadow:0 -6px 20px rgba(6,78,59,.08);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.bnav button{
+  flex:1;border:0;background:transparent;padding:9px 4px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;
+  color:var(--ink-3);font-size:11.5px;font-weight:600;position:relative;
+}
+.bnav button.on{color:var(--g-700)}
+.bnav button.on::before{content:"";position:absolute;top:0;left:22%;right:22%;height:3px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,var(--g-600),var(--g-400))}
+.bnav .ic{width:22px;height:22px}
+
+/* ---------------- Generic pieces ---------------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-l);box-shadow:var(--sh-1)}
+.sec-title{display:flex;align-items:center;gap:9px;margin:22px 2px 10px;font-size:14px;font-weight:700;color:var(--ink-2);letter-spacing:.2px;text-transform:none}
+.sec-title:first-child{margin-top:4px}
+.sec-title span.line{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:var(--r-m);
+  padding:11px 16px;font-weight:600;border:1px solid transparent;transition:transform .12s,box-shadow .16s,background .16s;
+  min-height:44px;
+}
+.btn:active{transform:translateY(1px)}
+.btn-p{background:linear-gradient(135deg,var(--g-700),var(--g-500));color:#fff;box-shadow:0 3px 12px rgba(5,150,105,.28)}
+.btn-p:hover{background:linear-gradient(135deg,var(--g-800),var(--g-600))}
+.btn-s{background:#fff;color:var(--g-700);border-color:var(--line-2)}
+.btn-s:hover{background:var(--g-050);border-color:var(--g-400)}
+.btn-t{background:var(--t-700);color:#fff}
+.btn-t:hover{background:var(--t-800)}
+.btn-d{background:#fff;color:var(--danger);border-color:var(--danger-line)}
+.btn-d:hover{background:var(--danger-bg)}
+.btn-g{background:var(--g-050);color:var(--g-800);border-color:var(--g-100)}
+.btn-w{width:100%}
+.btn[disabled]{opacity:.55;pointer-events:none}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:12.5px;font-weight:600;background:var(--g-050);color:var(--g-700);border:1px solid var(--g-100)}
+
+/* ---------------- Dashboard ---------------- */
+.d-hero{
+  border-radius:var(--r-xl);padding:18px;color:#fff;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,var(--g-900),var(--g-700) 60%,var(--g-500));
+  box-shadow:var(--sh-2);
+}
+.d-hero::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.07)}
+.d-hero h2{margin:0 0 4px;font-size:18px;font-weight:700}
+.d-hero p{margin:0;font-size:13px;opacity:.9}
+.split{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;position:relative;z-index:1;
+}
+.split .cell{display:flex;align-items:center;gap:9px;padding:11px 13px;border-radius:var(--r-m);background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22)}
+.split .cell b{font-size:15px;font-weight:700}
+.split .cell small{display:block;font-size:11.5px;opacity:.85;font-weight:500}
+.row-card{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;text-align:left;
+  background:#fff;border:1px solid var(--line);border-radius:var(--r-l);padding:14px 16px;box-shadow:var(--sh-1);margin-bottom:10px;
+}
+.row-card .side{display:flex;align-items:center;gap:10px;min-width:0}
+.row-card .ib{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;flex:0 0 auto}
+.ib-g{background:var(--g-050);color:var(--g-700);border:1px solid var(--g-100)}
+.ib-t{background:var(--t-050);color:var(--t-700);border:1px solid #ccfbf1}
+.row-card .lb{font-size:13px;color:var(--ink-3);font-weight:600;line-height:1.3}
+.row-card .vl{font-size:17px;font-weight:700;color:var(--ink)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.big-card{border-radius:var(--r-l);padding:16px;color:#fff;box-shadow:var(--sh-2);position:relative;overflow:hidden}
+.big-card.m{background:linear-gradient(140deg,var(--g-800),var(--g-600))}
+.big-card.t{background:linear-gradient(140deg,var(--t-800),var(--t-600))}
+.big-card .bi{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);margin-bottom:10px}
+.big-card .bl{font-size:13.5px;opacity:.9;font-weight:600}
+.big-card .bv{font-size:30px;font-weight:700;line-height:1.15}
+.total-card{
+  border-radius:var(--r-xl);padding:20px;text-align:center;color:#fff;margin-top:12px;
+  background:linear-gradient(135deg,#052e1c,#065f46 55%,#0d9488);box-shadow:var(--sh-2);
+}
+.total-card .tl{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;opacity:.92}
+.total-card .tv{font-size:46px;font-weight:700;line-height:1.1;letter-spacing:.5px}
+.stat-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 15px;border-radius:var(--r-m);background:#fff;border:1px solid var(--line);margin-bottom:9px;box-shadow:var(--sh-1)}
+.stat-row .l{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--ink-2);font-size:14.5px}
+.stat-row .n{font-size:19px;font-weight:700;color:var(--g-700)}
+.stat-row.tm .n{color:var(--t-700)}
+.bene-card{border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-2);border:1px solid var(--g-100);background:#fff;margin-top:12px}
+.bene-card .top{background:linear-gradient(135deg,var(--g-800),var(--g-600));color:#fff;padding:18px;text-align:center}
+.bene-card .top .l{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;opacity:.92}
+.bene-card .top .v{font-size:40px;font-weight:700;line-height:1.15}
+.bene-card .bt{display:grid;grid-template-columns:1fr 1fr}
+.bene-card .bt div{padding:14px;text-align:center}
+.bene-card .bt div+div{border-left:1px solid var(--line)}
+.bene-card .bt .k{font-size:13px;color:var(--ink-3);font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px}
+.bene-card .bt .n{font-size:22px;font-weight:700;color:var(--g-700)}
+
+/* ---------------- Form ---------------- */
+.form-wrap{background:#fff;border:1px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--sh-2);overflow:hidden}
+.form-head{padding:14px 16px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#fff,var(--g-050));display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+.form-head .ttl{display:flex;align-items:center;gap:9px;font-weight:700;font-size:16px;color:var(--g-800)}
+.form-head .sp{flex:1}
+.kbd-hint{display:none;align-items:center;gap:12px;font-size:12.5px;color:var(--ink-3)}
+.kbd-hint b{display:inline-flex;align-items:center;gap:5px;font-weight:600;color:var(--ink-2)}
+kbd{font-family:var(--en);font-size:11px;font-weight:600;padding:2px 6px;border-radius:6px;background:#fff;border:1px solid var(--line-2);box-shadow:0 1px 0 var(--line-2);color:var(--ink-2)}
+.grid{display:grid;grid-template-columns:1fr;gap:14px;padding:16px}
+.fld{min-width:0}
+.fld label,.fld .lbl{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;color:var(--ink-2);margin-bottom:6px}
+.fld label .ic,.fld .lbl .ic{color:var(--g-600)}
+.req{color:var(--danger);font-weight:700}
+.ctl{position:relative;display:flex;align-items:center}
+input[type=text],input[type=tel],input[type=date],select{
+  width:100%;padding:12px 13px;border-radius:var(--r-m);border:1.6px solid var(--line-2);background:#fff;
+  min-height:48px;transition:border-color .14s,box-shadow .14s,background .14s;
+}
+input:hover,select:hover{border-color:#a9c6bb}
+input:focus,select:focus{outline:0;border-color:var(--g-500);box-shadow:0 0 0 4px rgba(16,185,129,.16);background:#fff}
+input::placeholder{color:#a9b8b3}
+input[readonly]{background:var(--g-050);color:var(--ink-2);border-style:dashed;border-color:var(--g-100)}
+select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23065f46' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat:no-repeat;background-position:right 11px center;padding-right:38px}
+.mono{font-family:var(--en);letter-spacing:.4px}
+.fld .hint{font-size:12px;color:var(--ink-3);margin-top:5px}
+.fld .err{display:none;align-items:center;gap:6px;font-size:12.5px;color:var(--danger);margin-top:5px;font-weight:600}
+.fld.bad input,.fld.bad select{border-color:var(--danger-line);box-shadow:0 0 0 4px rgba(217,45,32,.1)}
+.fld.bad .err{display:flex}
+.nextbtn{display:none}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{
+  display:flex;align-items:center;gap:10px;padding:13px;border-radius:var(--r-m);border:1.8px solid var(--line-2);
+  background:#fff;font-weight:600;color:var(--ink-2);transition:.16s;min-height:56px;text-align:left;
+}
+.opt .oi{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--g-050);color:var(--g-700);flex:0 0 auto;transition:.16s}
+.opt:hover{border-color:var(--g-400);background:var(--g-050)}
+.opt[aria-checked=true]{border-color:var(--g-600);background:linear-gradient(135deg,var(--g-050),#fff);box-shadow:0 0 0 3px rgba(16,185,129,.14);color:var(--g-800)}
+.opt[aria-checked=true] .oi{background:linear-gradient(135deg,var(--g-700),var(--g-500));color:#fff}
+.opt.temple .oi{background:var(--t-050);color:var(--t-700)}
+.opt.temple[aria-checked=true]{border-color:var(--t-600);background:linear-gradient(135deg,var(--t-050),#fff);box-shadow:0 0 0 3px rgba(13,148,136,.14);color:var(--t-800)}
+.opt.temple[aria-checked=true] .oi{background:linear-gradient(135deg,var(--t-800),var(--t-600));color:#fff}
+.form-actions{padding:14px 16px;border-top:1px solid var(--line);background:linear-gradient(180deg,var(--g-050),#fff);display:flex;flex-wrap:wrap;gap:10px}
+.form-actions .btn{flex:1 1 210px}
+.banner{display:flex;align-items:flex-start;gap:11px;padding:13px 14px;border-radius:var(--r-m);margin-bottom:12px;font-size:14px;border:1px solid}
+.banner .bx{flex:1;min-width:0}
+.banner b{display:block;margin-bottom:2px}
+.banner.dr{background:var(--warn-bg);border-color:#fedf89;color:#7a2e0e}
+.banner.du{background:var(--danger-bg);border-color:var(--danger-line);color:#7a271a}
+.banner.ed{background:var(--g-050);border-color:var(--g-100);color:var(--g-800)}
+.banner .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
+.banner .btn{min-height:38px;padding:7px 12px;font-size:13.5px}
+.mobile-bar{display:none}
+
+/* ---------------- Beneficiaries ---------------- */
+.tools{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.search{position:relative;flex:1;min-width:0}
+.search .si{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--g-600);pointer-events:none}
+.search input{padding-left:42px;padding-right:40px;border-radius:999px}
+.search .clr{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:30px;height:30px;border:0;background:var(--g-050);color:var(--g-700);border-radius:50%;display:none;place-items:center}
+.search input:not(:placeholder-shown)+.clr{display:grid}
+.fbtn{position:relative;width:48px;height:48px;border-radius:14px;border:1.6px solid var(--line-2);background:#fff;color:var(--g-700);display:grid;place-items:center;flex:0 0 auto}
+.fbtn:hover{border-color:var(--g-400);background:var(--g-050)}
+.fbtn .badge{position:absolute;top:-5px;right:-5px;min-width:20px;height:20px;border-radius:10px;background:var(--g-600);color:#fff;font-size:11px;font-weight:700;display:none;align-items:center;justify-content:center;padding:0 5px;border:2px solid #fff}
+.fbtn.act .badge{display:flex}
+.meta-line{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:0 2px 12px;font-size:13px;color:var(--ink-3);font-weight:600}
+.act-filters{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px}
+.act-filters .chip button{border:0;background:transparent;color:inherit;display:grid;place-items:center;padding:0}
+.inst-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.inst{border-radius:var(--r-l);overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:var(--sh-1);transition:box-shadow .18s,transform .18s}
+.inst:hover{box-shadow:var(--sh-2);transform:translateY(-2px)}
+.inst .ih{padding:13px 15px;color:#fff}
+.inst.m .ih{background:var(--g-800)}
+.inst.t .ih{background:var(--t-800)}
+.inst .un{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;opacity:.9;margin-bottom:5px}
+.inst .nm{display:flex;align-items:flex-start;gap:9px;font-size:16px;font-weight:700;line-height:1.35}
+.inst .nm .ic{margin-top:3px}
+.inst .loc{display:flex;align-items:center;gap:7px;font-size:12px;opacity:.85;margin-top:6px}
+.inst .ib2{padding:6px 15px 10px}
+.brow{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line)}
+.brow:last-child{border-bottom:0}
+.brow .bi2{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;flex:0 0 auto;background:var(--g-050);color:var(--g-700);border:1px solid var(--g-100)}
+.inst.t .brow .bi2{background:var(--t-050);color:var(--t-700);border-color:#ccfbf1}
+.brow .bd{min-width:0;flex:1}
+.brow .dg{font-size:12px;font-weight:700;color:var(--ink-3)}
+.brow .nn{font-size:14.5px;font-weight:600;color:var(--ink);word-break:break-word}
+.brow .gx{font-size:11.5px;color:var(--ink-3);font-weight:600;white-space:nowrap}
+.inst .if{display:grid;grid-template-columns:1fr 1fr;color:#fff}
+.inst .if button{border:0;background:transparent;color:#fff;padding:12px 8px;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:13.5px}
+.inst.m .if{background:var(--g-600)}
+.inst.t .if{background:var(--t-600)}
+.inst .if button+button{border-left:1px solid rgba(255,255,255,.28)}
+.inst .if button:hover{background:rgba(0,0,0,.14)}
+.empty{text-align:center;padding:46px 20px;color:var(--ink-3)}
+.empty .eic{width:76px;height:76px;border-radius:24px;display:grid;place-items:center;margin:0 auto 14px;background:var(--g-050);color:var(--g-600);border:1px solid var(--g-100)}
+.empty h3{margin:0 0 6px;font-size:16.5px;color:var(--ink-2)}
+.empty p{margin:0 0 16px;font-size:14px}
+.pager{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:18px;flex-wrap:wrap}
+.pager .pi{font-size:13.5px;font-weight:600;color:var(--ink-2)}
+.pager button{width:42px;height:42px;border-radius:11px;border:1.5px solid var(--line-2);background:#fff;color:var(--g-700);display:grid;place-items:center}
+.pager button[disabled]{opacity:.4;pointer-events:none}
+
+/* ---------------- Modal ---------------- */
+.ovl{position:fixed;inset:0;z-index:60;background:rgba(5,46,28,.42);display:none;align-items:center;justify-content:center;padding:14px;backdrop-filter:blur(2px)}
+.ovl.on{display:flex}
+.mdl{width:100%;max-width:640px;max-height:min(88dvh,860px);background:#fff;border-radius:var(--r-xl);box-shadow:var(--sh-3);display:flex;flex-direction:column;overflow:hidden;animation:pop .2s ease}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+.mdl.sm{max-width:430px}
+.mdl-h{padding:15px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--g-800),var(--g-600));color:#fff}
+.mdl-h h3{margin:0;font-size:16px;font-weight:700;flex:1;min-width:0}
+.mdl-h .x{width:36px;height:36px;border-radius:10px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.14);color:#fff;display:grid;place-items:center}
+.mdl-b{padding:16px;overflow:auto;-webkit-overflow-scrolling:touch}
+.mdl-f{padding:13px 16px;border-top:1px solid var(--line);display:flex;gap:10px;background:var(--g-050);flex-wrap:wrap}
+.mdl-f .btn{flex:1 1 140px}
+.fgrp{margin-bottom:16px}
+.fgrp>.t{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;color:var(--ink-2);margin-bottom:9px}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.chk{display:flex;align-items:center;gap:9px;padding:10px 11px;border:1.5px solid var(--line-2);border-radius:10px;font-size:13.5px;font-weight:600;color:var(--ink-2);cursor:pointer;background:#fff;min-height:44px}
+.chk:hover{border-color:var(--g-400);background:var(--g-050)}
+.chk input{width:18px;height:18px;accent-color:var(--g-600);flex:0 0 auto;min-height:0}
+.chk.on{border-color:var(--g-600);background:var(--g-050);color:var(--g-800)}
+.dl{display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--line);border-radius:var(--r-m);overflow:hidden}
+.dl .r{display:grid;grid-template-columns:minmax(120px,42%) 1fr;gap:0;border-bottom:1px solid var(--line)}
+.dl .r:last-child{border-bottom:0}
+.dl .k{padding:9px 11px;background:var(--g-050);font-size:12.5px;font-weight:600;color:var(--ink-2);display:flex;align-items:center;gap:7px}
+.dl .v{padding:9px 11px;font-size:14px;font-weight:600;word-break:break-word}
+.dl .v.mono{font-family:var(--en)}
+.dtl-h{display:flex;align-items:center;gap:10px;padding:12px 13px;border-radius:var(--r-m);background:linear-gradient(135deg,var(--g-800),var(--g-600));color:#fff;margin-bottom:14px}
+.dtl-h .n{font-weight:700;font-size:15px}
+.dtl-h small{display:block;opacity:.9;font-size:12px;font-weight:500}
+.pcard{border:1px solid var(--line);border-radius:var(--r-m);padding:12px;margin-bottom:12px;box-shadow:var(--sh-1)}
+.pcard .ph{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.pcard .ph .bi2{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--g-050);color:var(--g-700);border:1px solid var(--g-100)}
+.pcard .ph .nn{font-weight:700;font-size:15px}
+.pcard .ph .dg{font-size:12px;color:var(--ink-3);font-weight:600}
+.pcard .pa{display:flex;gap:8px;margin-top:11px;flex-wrap:wrap}
+.pcard .pa .btn{flex:1 1 130px;min-height:40px;padding:8px 12px;font-size:13.5px}
+.set-block{border:1px solid var(--line);border-radius:var(--r-m);padding:14px;margin-bottom:14px}
+.set-block>.t{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14.5px;color:var(--g-800);margin-bottom:4px}
+.set-block>.d{font-size:12.5px;color:var(--ink-3);margin-bottom:12px}
+.sw{display:flex;align-items:center;gap:12px;justify-content:space-between;padding:11px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.sw .txt{font-size:13.5px;font-weight:600;color:var(--ink-2)}
+.sw .txt small{display:block;font-weight:500;color:var(--ink-3);font-size:12px}
+.tgl{position:relative;width:50px;height:28px;flex:0 0 auto;border-radius:999px;border:0;background:var(--line-2);transition:background .18s}
+.tgl::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .18s;box-shadow:var(--sh-1)}
+.tgl[aria-checked=true]{background:linear-gradient(135deg,var(--g-600),var(--g-400))}
+.tgl[aria-checked=true]::after{transform:translateX(22px)}
+.pw{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 8px 4px;font-size:13.5px;font-weight:700}
+.pw .gt{background:linear-gradient(90deg,var(--g-700),var(--g-400) 55%,var(--t-600));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;font-family:var(--en);letter-spacing:.3px}
+.pw .ic{color:var(--g-600)}
+.shk{display:grid;grid-template-columns:1fr;gap:8px}
+.shk .r{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;font-size:13.5px}
+.exp-note{font-size:12.5px;color:var(--ink-3);margin-top:10px;display:flex;gap:7px;align-items:flex-start}
+
+/* ---------------- Toasts ---------------- */
+.toasts{position:fixed;z-index:80;left:12px;right:12px;bottom:calc(var(--nav-h) + 14px);display:flex;flex-direction:column;gap:9px;pointer-events:none;align-items:center}
+.toast{
+  pointer-events:auto;width:100%;max-width:460px;display:flex;align-items:flex-start;gap:11px;padding:12px 13px;border-radius:var(--r-m);
+  background:#fff;border:1px solid var(--line);box-shadow:var(--sh-3);font-size:14px;animation:tin .22s ease;
+}
+@keyframes tin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.toast .ti{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;flex:0 0 auto}
+.toast.ok .ti{background:var(--g-050);color:var(--ok)}
+.toast.er .ti{background:var(--danger-bg);color:var(--danger)}
+.toast.wr .ti{background:var(--warn-bg);color:var(--warn)}
+.toast.in .ti{background:var(--t-050);color:var(--t-700)}
+.toast .tb{flex:1;min-width:0}
+.toast .tb b{display:block;font-size:14px}
+.toast .tb small{display:block;color:var(--ink-3);font-size:12.5px}
+.toast .ta{display:flex;gap:7px;margin-top:8px;flex-wrap:wrap}
+.toast .ta button{border:1px solid var(--line-2);background:#fff;border-radius:9px;padding:6px 11px;font-size:13px;font-weight:600;color:var(--g-700)}
+.toast .tx{width:28px;height:28px;border:0;background:transparent;color:var(--ink-3);border-radius:8px;display:grid;place-items:center;flex:0 0 auto}
+.spin{width:16px;height:16px;border:2px solid rgba(255,255,255,.45);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
+.spin.d{border-color:rgba(6,95,70,.25);border-top-color:var(--g-700)}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width:860px){
+  .mobile-bar{
+    display:flex;gap:9px;position:fixed;left:0;right:0;bottom:var(--nav-h);z-index:44;padding:9px 12px calc(9px + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.96);border-top:1px solid var(--line);box-shadow:0 -6px 18px rgba(6,78,59,.1);
+  }
+  .mobile-bar .btn{flex:1;min-height:52px;font-size:15px}
+  .mobile-bar .btn.icoonly{flex:0 0 56px}
+  .form-actions{display:none}
+  .nextbtn{
+    display:grid;place-items:center;position:absolute;right:6px;top:50%;transform:translateY(-50%);
+    width:38px;height:38px;border-radius:10px;border:1px solid var(--g-100);background:var(--g-050);color:var(--g-700);
+  }
+  .ctl.has-next input,.ctl.has-next select{padding-right:52px}
+  .ctl.has-next select{background-position:right 52px center}
+  .toasts{bottom:calc(var(--nav-h) + 78px)}
+  .duo{grid-template-columns:1fr}
+  .checks{grid-template-columns:1fr}
+  .dl .r{grid-template-columns:1fr}
+  .dl .k{border-bottom:1px solid var(--line)}
+  .mdl{max-height:92dvh}
+}
+@media (min-width:861px){
+  .bnav{display:none}
+  .tabs{display:block}
+  .kbd-hint{display:flex}
+  main{padding-bottom:40px}
+  .grid{grid-template-columns:1fr 1fr;gap:16px;padding:20px}
+  .grid .full{grid-column:1/-1}
+  .inst-grid{grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}
+  .toasts{left:auto;right:18px;bottom:18px;align-items:flex-end}
+  :root{--nav-h:0px}
+}
+@media (min-width:1180px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+}
+@media print{ .hdr,.tabs,.bnav,.mobile-bar,.toasts,.tools{display:none} }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="hdr">
+    <div class="hdr-in">
+      <div class="brand">
+        <div class="brand-mark" id="brandMark"></div>
+        <div class="brand-txt">
+          <h1>সম্মানিভোগী তথ্য ব্যবস্থাপনা</h1>
+          <p>উপজেলা প্রশাসন, লোহাগড়া, নড়াইল</p>
+        </div>
+      </div>
+      <div class="hdr-sp"></div>
+      <button class="icon-btn" id="btnSettings" title="সেটিংস" aria-label="সেটিংস"></button>
+    </div>
+    <nav class="tabs" aria-label="প্রধান নেভিগেশন">
+      <div class="tabs-in" id="topTabs"></div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ================= DASHBOARD ================= -->
+    <section class="panel" id="p-dash" role="tabpanel" aria-label="ড্যাশবোর্ড">
+      <div class="d-hero">
+        <h2>ড্যাশবোর্ড</h2>
+        <p>ধর্মীয় প্রতিষ্ঠানের সম্মানিভোগীদের হালনাগাদ পরিসংখ্যান</p>
+        <div class="split">
+          <div class="cell"><span id="hiDist"></span><span><small>জেলা</small><b>নড়াইল</b></span></div>
+          <div class="cell"><span id="hiUpa"></span><span><small>উপজেলা</small><b>লোহাগড়া</b></span></div>
+        </div>
+      </div>
+
+      <div class="sec-title"><span id="stLoc"></span>অবস্থান তথ্য<span class="line"></span></div>
+      <div class="row-card">
+        <div class="side"><div class="ib ib-g" id="icD1"></div><div><div class="lb">জেলা</div><div class="vl">নড়াইল</div></div></div>
+        <div class="side" style="text-align:right"><div><div class="lb">উপজেলা</div><div class="vl">লোহাগড়া</div></div><div class="ib ib-g" id="icU1"></div></div>
+      </div>
+      <div class="row-card">
+        <div class="side"><div class="ib ib-g" id="icUn1"></div><div><div class="lb">মোট ইউনিয়ন</div><div class="vl">১২ টি</div></div></div>
+        <div class="side" style="text-align:right"><div><div class="lb">পৌরসভা</div><div class="vl">১ টি</div></div><div class="ib ib-t" id="icPo1"></div></div>
+      </div>
+
+      <div class="sec-title"><span id="stInst"></span>প্রতিষ্ঠান পরিসংখ্যান<span class="line"></span></div>
+      <div class="duo">
+        <div class="big-card m"><div class="bi" id="icMq"></div><div class="bl">মোট মসজিদ</div><div class="bv" data-count="mosque">০</div></div>
+        <div class="big-card t"><div class="bi" id="icTp"></div><div class="bl">মোট মন্দির</div><div class="bv" data-count="temple">০</div></div>
+      </div>
+      <div class="total-card">
+        <div class="tl" id="icTot"><span>মোট প্রতিষ্ঠান</span></div>
+        <div class="tv" data-count="inst">০</div>
+      </div>
+
+      <div class="sec-title"><span id="stMq"></span>মসজিদভিত্তিক সম্মানিভোগী<span class="line"></span></div>
+      <div id="mqStats"></div>
+
+      <div class="sec-title"><span id="stTp"></span>মন্দিরভিত্তিক সম্মানিভোগী<span class="line"></span></div>
+      <div id="tpStats"></div>
+
+      <div class="sec-title"><span id="stBn"></span>সম্মানিভোগী সারসংক্ষেপ<span class="line"></span></div>
+      <div class="bene-card">
+        <div class="top">
+          <div class="l" id="icBn"><span>মোট সম্মানিভোগী</span></div>
+          <div class="v" data-count="total">০</div>
+        </div>
+        <div class="bt">
+          <div><div class="k" id="icMale"><span>পুরুষ</span></div><div class="n" data-count="male">০</div></div>
+          <div><div class="k" id="icFemale"><span>মহিলা</span></div><div class="n" data-count="female">০</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ENTRY ================= -->
+    <section class="panel" id="p-entry" role="tabpanel" aria-label="তথ্য এন্ট্রি">
+      <div id="draftBanner"></div>
+      <div id="editBanner"></div>
+      <div id="dupBanner"></div>
+
+      <form class="form-wrap" id="entryForm" autocomplete="off" novalidate>
+        <div class="form-head">
+          <div class="ttl"><span id="icForm"></span><span id="formTitle">নতুন সম্মানিভোগী এন্ট্রি</span></div>
+          <div class="sp"></div>
+          <div class="kbd-hint">
+            <b><kbd>Tab</kbd> পরবর্তী</b>
+            <b><kbd>Shift</kbd>+<kbd>Tab</kbd> পূর্ববর্তী</b>
+            <b><kbd>Enter</kbd> সংরক্ষণ</b>
+          </div>
+        </div>
+
+        <div class="grid">
+          <!-- 01 / 02 -->
+          <div class="fld">
+            <label for="f_district"><span data-i="pin"></span>জেলা</label>
+            <div class="ctl"><input type="text" id="f_district" value="নড়াইল" readonly tabindex="-1" aria-readonly="true"></div>
+          </div>
+          <div class="fld">
+            <label for="f_upazila"><span data-i="office"></span>উপজেলার নাম</label>
+            <div class="ctl"><input type="text" id="f_upazila" value="লোহাগড়া" readonly tabindex="-1" aria-readonly="true"></div>
+          </div>
+
+          <!-- 03 -->
+          <div class="fld full">
+            <div class="lbl" id="lbType"><span data-i="mosque"></span>ধর্মীয় প্রতিষ্ঠানের ধরন <span class="req">*</span></div>
+            <div class="seg" role="radiogroup" aria-labelledby="lbType" id="typeGroup">
+              <button type="button" class="opt" data-radio="instType" data-value="মসজিদ" role="radio" aria-checked="false" tabindex="0">
+                <span class="oi" data-i="mosque"></span><span>মসজিদ</span>
+              </button>
+              <button type="button" class="opt temple" data-radio="instType" data-value="মন্দির" role="radio" aria-checked="false" tabindex="-1">
+                <span class="oi" data-i="temple"></span><span>মন্দির</span>
+              </button>
+            </div>
+            <div class="err" data-err="instType"><span data-i="alert" class="ic-s"></span><span></span></div>
+          </div>
+
+          <!-- 04 -->
+          <div class="fld full">
+            <label for="f_instName"><span data-i="building"></span><span id="lblInstName">প্রতিষ্ঠানের নাম</span> <span class="req">*</span></label>
+            <div class="ctl"><input type="text" id="f_instName" data-f="instName" placeholder="প্রতিষ্ঠানের পূর্ণ নাম লিখুন" enterkeyhint="next" autocapitalize="off" spellcheck="false" maxlength="120" list="dl_inst"></div>
+            <datalist id="dl_inst"></datalist>
+            <div class="err" data-err="instName"><span data-i="alert" class="ic-s"></span><span></span></div>
+          </div>
+
+          <!-- 06 -->
+          <div class="fld">
+            <label for="f_union"><span data-i="map"></span>ইউনিয়ন/পৌরসভার নাম <span class="req">*</span></label>
+            <div class="ctl"><select id="f_union" data-f="union"><option value="">নির্বাচন করুন</option></select></div>
+            <div class="err" data-err="union"><span data-i="alert" class="ic-s"></span><span></span></div>
+          </div>
+
+          <!-- 07 -->
+          <div class="fld">
+            <label for="f_locality"><span data-i="village"></span><span id="lblLocality">গ্রাম/পৌরসভার ওয়ার্ড নং</span> <span class="req">*</span></label>
+            <div class="ctl"><input type="text" id="f_locality" data-f="locality" placeholder="গ্রামের নাম লিখুন বা নির্বাচন করুন" enterkeyhint="next" maxlength="90" list="dl_loc"></div>
+            <datalist id="dl_loc"></datalist>
+            <div class="err" data-err="locality"><span data-i="alert" class="ic-s"></span><span></span></div>
+          </div>
+
+          <!-- 08 -->
+          <div class="fld">
+            <label for="f_nameBn"><span data-i="user"></span>সম্মানিভোগীর নাম <span class="req">*</span></label>
+            <div class="ctl"><input type="text" id="f_nameBn" data-f="nameBn" placeholder="বাংলায়, এনআইডি অনুযায়ী" enterkeyhint="next" maxlength="100"></div>
+            <div class="hint">বাংলা — এনআইডি অনুযায়ী</div>
+            <div class="err" data-err="nameBn"><span data-i="alert" class="ic-s"></span><span></span></div>
+          </div>
+
+          <!-- 09 -->
+          <div class="fld">
+            <label for="f_nameEn"><span data-i="userEn"></span>সম্মানিভোগীর নাম [(ইংরেজি) এনআইডি অনুযায়ী] <span class="req">*</span></label>
+            <div class="ctl"><input type="text" id="f_nameEn" data-f="nameEn" class="en" placeholder="MD ABDUL KARIM" enterkeyhint="next" lang="en" spellcheck="false" autocapitalize="characters" maxlength="100"></div>
+            <div class="err" data-err="nameEn"><span data-i="alert" class="ic-s"></span><span></span></div>
+          </div>
+
+          <!-- 10 -->
+          <div class="fld">
+            <label for="f_gender"><span data-i="gender"></span>লিঙ্গ <span class="req">*</span></label>
+            <div class="ctl"><select id="f_gender" data-f="gender"><option value="">নির্বাচন করুন</option><option value="পুরুষ">পুরুষ</option><option value="মহিলা">মহিলা</option></select></div>
+            <div class="err" data-err="gender"><span data-i="alert" class="ic-s"></span><span></span></div>
+          </div>
+
+          <!-- 11 -->
+          <div class="fld">
+            <label for="f_designation"><span data-i="badge"></span>সম্মানিভোগীর পদবী <span class="req">*</span></label>
+            <div class="ctl"><select id="f_designation" data-f="designation"><option value="">প্রথমে প্রতিষ্ঠানের ধরন নির্বাচন করুন</option></select></div>
+            <div class="err" data-err="designation"><span data-i="alert" class="ic-s"></span><span></span></div>
+          </div>
+
+          <!-- 12 -->
+          <div class="fld full">
+            <label for="f_address"><span data-i="home"></span>সম্মানিভোগীর স্থায়ী ঠিকানা <span class="req">*</span></label>
+            <div class="ctl"><input type="text" id="f_address" data-f="address" placeholder="গ্রাম, ডাকঘর, ইউনিয়ন, উপজেলা, জেলা" enterkeyhint="next" maxlength="220"></div>
+            <div class="err" data-err="address"><span data-i="alert" class="ic-s"></span><span></span></div>
+          </div>
+
+          <!-- 13 -->
+          <div class="fld">
+            <label for="f_nid"><span data-i="idcard"></span>জাতীয় পরিচয়পত্র নম্বর <span class="req">*</span></label>
+            <div class="ctl"><input type="text" id="f_nid" data-f="nid" class="mono" inputmode="numeric" enterkeyhint="next" placeholder="১০ অথবা ১৭ সংখ্যা" maxlength="17" autocomplete="off"></div>
+            <div class="hint">ইংরেজি সংখ্যায়, ১০ অথবা ১৭ ডিজিট</div>
+            <div class="err" data-err="nid"><span data-i="alert" class="ic-s"></span><span></span></div>
+          </div>
+
+          <!-- 14 -->
+          <div class="fld">
+            <label for="f_dob"><span data-i="calendar"></span>জন্ম তারিখ [(ইংরেজি) এনআইডি অনুযায়ী] <span class="req">*</span></label>
+            <div class="ctl"><input type="date" id="f_dob" data-f="dob" class="mono" min="1900-01-01" enterkeyhint="next"></div>
+            <div class="hint">ফরম্যাট: বছর-মাস-দিন (YYYY-MM-DD)</div>
+            <div class="err" data-err="dob"><span data-i="alert" class="ic-s"></span><span></span></div>
+          </div>
+
+          <!-- 15 -->
+          <div class="fld">
+            <label for="f_fatherName"><span data-i="family"></span>সম্মানিভোগীর পিতার নাম <span class="req">*</span></label>
+            <div class="ctl"><input type="text" id="f_fatherName" data-f="fatherName" placeholder="বাংলায়, এনআইডি অনুযায়ী" enterkeyhint="next" maxlength="100"></div>
+            <div class="err" data-err="fatherName"><span data-i="alert" class="ic-s"></span><span></span></div>
+          </div>
+
+          <!-- 16 -->
+          <div class="fld">
+            <label for="f_bankAccount"><span data-i="bank"></span>নিজ NID দিয়ে খোলা ব্যাংক একাউন্ট নম্বর <span class="req">*</span></label>
+            <div class="ctl"><input type="text" id="f_bankAccount" data-f="bankAccount" class="mono" inputmode="numeric" enterkeyhint="next" placeholder="সর্বনিম্ন ১১ সংখ্যা" maxlength="25" autocomplete="off"></div>
+            <div class="hint">শুরুর শূন্য অপরিবর্তিত থাকবে (টেক্সট হিসেবে সংরক্ষিত)</div>
+            <div class="err" data-err="bankAccount"><span data-i="alert" class="ic-s"></span><span></span></div>
+          </div>
+
+          <!-- 17 -->
+          <div class="fld">
+            <label for="f_bankBranch"><span data-i="branch"></span>ব্যাংক ও শাখার নাম <span class="req">*</span></label>
+            <div class="ctl"><input type="text" id="f_bankBranch" data-f="bankBranch" class="en" placeholder="Sonali Bank PLC, Lohagara Branch" enterkeyhint="next" lang="en" spellcheck="false" maxlength="120" list="dl_bank"></div>
+            <datalist id="dl_bank"></datalist>
+            <div class="err" data-err="bankBranch"><span data-i="alert" class="ic-s"></span><span></span></div>
+          </div>
+
+          <!-- 18 -->
+          <div class="fld">
+            <label for="f_routing"><span data-i="hash"></span>ব্যাংকের রাউটিং নম্বর <span class="req">*</span></label>
+            <div class="ctl"><input type="text" id="f_routing" data-f="routing" class="mono" inputmode="numeric" enterkeyhint="next" placeholder="৯ সংখ্যার রাউটিং নম্বর" maxlength="12" autocomplete="off" list="dl_route"></div>
+            <datalist id="dl_route"></datalist>
+            <div class="err" data-err="routing"><span data-i="alert" class="ic-s"></span><span></span></div>
+          </div>
+
+          <!-- 19 -->
+          <div class="fld">
+            <label for="f_mobile"><span data-i="phone"></span>নিজ NID দিয়ে রেজিষ্ট্রেশনকৃত মোবাইল নম্বর <span class="req">*</span></label>
+            <div class="ctl"><input type="tel" id="f_mobile" data-f="mobile" class="mono" inputmode="numeric" enterkeyhint="done" placeholder="01XXXXXXXXX" maxlength="11" autocomplete="off"></div>
+            <div class="hint">ইংরেজি সংখ্যায় ১১ ডিজিট</div>
+            <div class="err" data-err="mobile"><span data-i="alert" class="ic-s"></span><span></span></div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-p" data-save="default" id="btnSaveMain"><span data-i="save"></span><span>সংরক্ষণ করুন</span> <kbd>Enter</kbd></button>
+          <button type="button" class="btn btn-g" data-save="same"><span data-i="plus"></span><span>সংরক্ষণ ও একই প্রতিষ্ঠানে আরেকজন</span></button>
+          <button type="button" class="btn btn-s" data-save="new"><span data-i="refresh"></span><span>সংরক্ষণ ও নতুন এন্ট্রি</span> <kbd>Shift+Enter</kbd></button>
+          <button type="button" class="btn btn-s" id="btnClearForm"><span data-i="eraser"></span><span>ফর্ম খালি করুন</span></button>
+        </div>
+      </form>
+
+      <div class="mobile-bar">
+        <button type="button" class="btn btn-p" data-save="default"><span data-i="save"></span><span>ডেটা সংরক্ষণ করুন</span></button>
+        <button type="button" class="btn btn-g icoonly" data-save="same" title="সংরক্ষণ ও একই প্রতিষ্ঠানে আরেকজন" aria-label="সংরক্ষণ ও একই প্রতিষ্ঠানে আরেকজন"><span data-i="plus"></span></button>
+      </div>
+    </section>
+
+    <!-- ================= BENEFICIARIES ================= -->
+    <section class="panel" id="p-bene" role="tabpanel" aria-label="উপকারভোগী">
+      <div class="tools">
+        <div class="search">
+          <span class="si" data-i="search"></span>
+          <input type="text" id="searchInput" placeholder="নাম, প্রতিষ্ঠান, পিতা, NID, মোবাইল, একাউন্ট..." enterkeyhint="search" aria-label="অনুসন্ধান">
+          <button class="clr" id="searchClear" type="button" aria-label="অনুসন্ধান মুছুন"><span data-i="x" class="ic-s"></span></button>
+        </div>
+        <button class="fbtn" id="btnFilter" title="ফিল্টার" aria-label="ফিল্টার"><span data-i="filter"></span><span class="badge" id="fBadge">0</span></button>
+      </div>
+      <div class="act-filters" id="activeFilters"></div>
+      <div class="meta-line" id="listMeta"></div>
+      <div class="inst-grid" id="instList"></div>
+      <div class="pager" id="pager"></div>
+    </section>
+  </main>
+
+  <nav class="bnav" id="bottomNav" aria-label="প্রধান নেভিগেশন"></nav>
+</div>
+
+<!-- ================= MODALS ================= -->
+<div class="ovl" id="ovlFilter"><div class="mdl" role="dialog" aria-modal="true" aria-label="ফিল্টার">
+  <div class="mdl-h"><span data-i="filter"></span><h3>স্মার্ট ফিল্টার</h3><button class="x" data-close type="button" aria-label="বন্ধ করুন"><span data-i="x"></span></button></div>
+  <div class="mdl-b" id="filterBody"></div>
+  <div class="mdl-f">
+    <button class="btn btn-s" id="btnClearFilter" type="button"><span data-i="eraser"></span>Clear Filter</button>
+    <button class="btn btn-p" id="btnApplyFilter" type="button"><span data-i="check"></span>Apply Filter</button>
+  </div>
+</div></div>
+
+<div class="ovl" id="ovlDetails"><div class="mdl" role="dialog" aria-modal="true" aria-label="বিস্তারিত তথ্য">
+  <div class="mdl-h"><span data-i="eye"></span><h3>বিস্তারিত তথ্য</h3><button class="x" data-close type="button" aria-label="বন্ধ করুন"><span data-i="x"></span></button></div>
+  <div class="mdl-b" id="detailsBody"></div>
+  <div class="mdl-f"><button class="btn btn-s btn-w" data-close type="button"><span data-i="x"></span>বন্ধ করুন</button></div>
+</div></div>
+
+<div class="ovl" id="ovlSettings"><div class="mdl" role="dialog" aria-modal="true" aria-label="সেটিংস">
+  <div class="mdl-h"><span data-i="cog"></span><h3>সেটিংস</h3><button class="x" data-close type="button" aria-label="বন্ধ করুন"><span data-i="x"></span></button></div>
+  <div class="mdl-b" id="settingsBody"></div>
+</div></div>
+
+<div class="ovl" id="ovlConfirm"><div class="mdl sm" role="dialog" aria-modal="true" aria-labelledby="cfTitle">
+  <div class="mdl-h"><span data-i="alert"></span><h3 id="cfTitle">নিশ্চিতকরণ</h3><button class="x" data-close type="button" aria-label="বন্ধ করুন"><span data-i="x"></span></button></div>
+  <div class="mdl-b" id="cfBody"></div>
+  <div class="mdl-f">
+    <button class="btn btn-s" data-close type="button">বাতিল</button>
+    <button class="btn btn-p" id="cfOk" type="button">নিশ্চিত করুন</button>
+  </div>
+</div></div>
+
+<div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+<input type="file" id="restoreFile" accept="application/json,.json" style="position:fixed;left:-9999px;top:0" tabindex="-1" aria-hidden="true">
+
+<script>
+"use strict";
+/* ==========================================================================
+   NI Studio Pro — Rapid Beneficiary Data Entry & Management System
+   Single-file, offline-first, zero-dependency.
+   ========================================================================== */
+(function(){
+
+/* -------------------------- 1. Constants -------------------------- */
+const DISTRICT = 'নড়াইল';
+const UPAZILA  = 'লোহাগড়া';
+const POURA    = 'লোহাগড়া পৌরসভা';
+const UNIONS   = ['নলদী','লাহুড়িয়া','শালনগর','নোয়াগ্রাম','লক্ষ্মীপাশা','জয়পুর','লোহাগড়া','দিঘলিয়া','মল্লিকপুর','কোটাকোল','ইতনা','কাশিপুর'];
+const ALL_AREAS = UNIONS.concat([POURA]);
+const TYPES = ['মসজিদ','মন্দির'];
+const DESIGNATIONS = { 'মসজিদ':['ইমাম','মুয়াজ্জিন','খাদেম'], 'মন্দির':['পুরোহিত','সেবাইত'] };
+const ALL_DESIGNATIONS = ['ইমাম','মুয়াজ্জিন','খাদেম','পুরোহিত','সেবাইত'];
+const GENDERS = ['পুরুষ','মহিলা'];
+const DESIG_ICON = { 'ইমাম':'imam','মুয়াজ্জিন':'muezzin','খাদেম':'khadem','পুরোহিত':'purohit','সেবাইত':'sebait' };
+const PAGE_SIZE = 18;
+
+const EXPORT_HEADERS = [
+  'ক্রম','জেলা','উপজেলার নাম','ধর্মীয় প্রতিষ্ঠানের ধরন','প্রতিষ্ঠানের নাম',
+  'সিটি কর্পোরেশনের ওয়ার্ড নং','ইউনিয়ন/পৌরসভার নাম','গ্রাম/পৌরসভার ওয়ার্ড নং',
+  'সম্মানিভোগীর নাম','সম্মানিভোগীর নাম (ইংরেজি)','লিঙ্গ','সম্মানিভোগীর পদবী',
+  'সম্মানিভোগীর স্থায়ী ঠিকানা','জাতীয় পরিচয়পত্র নম্বর','জন্ম তারিখ','সম্মানিভোগীর পিতার নাম',
+  'নিজ NID দিয়ে খোলা ব্যাংক একাউন্ট নম্বর','ব্যাংক ও শাখার নাম','ব্যাংকের রাউটিং নম্বর',
+  'নিজ NID দিয়ে রেজিষ্ট্রেশনকৃত মোবাইল নম্বর'
+];
+
+/* ---- WORD_CONFIG : Word export-এর single source of truth (sample Word file দিলে
+        শুধু এই block sample অনুযায়ী মিলিয়ে দিলেই hubohu match করবে) ---- */
+const WORD_CONFIG = {
+  page:      { widthTw:20160, heightTw:12240, orient:'landscape' },   // Legal 8.5in x 14in, landscape
+  margins:   { top:567, right:567, bottom:567, left:567 },            // 1 cm
+  fontName:  'Nirmala UI',                                            // Bangla-safe, Windows-এ preinstalled
+  fontHalfPt:16,                                                      // 16 half-points = font size 8
+  includeTitle:true,
+  title:     'জেলাঃ নড়াইল, উপজেলাঃ লোহাগড়া — ধর্মীয় প্রতিষ্ঠানের সম্মানিভোগীদের তালিকা',
+  repeatHeaderRow:true,
+  colWidthsTw:[480,600,680,780,1500,600,900,1000,1150,1150,560,720,1300,1150,900,1150,1200,1150,800,950] // মোট 18720 tw
+};
+const XLS_COL_WIDTH = [6.5,10,12,14,28,15,17,20,24,24,8,12,32,20,13,24,22,26,13,17];
+
+/* -------------------------- 2. Icons (premium SVG, no emoji) -------------------------- */
+const I = {
+  crest:'<path d="M12 2.6l7 3v5.6c0 4.6-3 8.2-7 10.2-4-2-7-5.6-7-10.2V5.6l7-3z"/><path d="M9.4 12.2l1.9 1.9 3.4-3.6"/>',
+  pin:'<path d="M12 21.2s-6.6-6-6.6-10.6a6.6 6.6 0 1 1 13.2 0C18.6 15.2 12 21.2 12 21.2z"/><circle cx="12" cy="10.4" r="2.4"/>',
+  office:'<path d="M3 21h18"/><path d="M5 21V6.5L12 3l7 3.5V21"/><path d="M10 21v-5h4v5"/><path d="M9 9h.01M15 9h.01M9 12.5h.01M15 12.5h.01"/>',
+  map:'<path d="M9 3.5 3.5 5.6v14.9L9 18.4l6 2.1 5.5-2.1V3.5L15 5.6 9 3.5z"/><path d="M9 3.5v14.9M15 5.6v14.9"/>',
+  village:'<path d="M3 21h18"/><path d="M4.5 21v-7l4-3.2 4 3.2V21"/><path d="M13 21v-5l3.5-2.8L20 16v5"/><path d="M8 21v-3.5"/>',
+  mosque:'<path d="M3.5 21h17"/><path d="M6 21v-6.2a6 6 0 0 1 12 0V21"/><path d="M12 4.2c1.7 1.3 2.2 2.4 2.2 3.4H9.8c0-1 .5-2.1 2.2-3.4z"/><path d="M4 21v-8.6M20 21v-8.6"/><path d="M11 21v-3.4h2V21"/>',
+  temple:'<path d="M3.5 21h17"/><path d="M6 21v-8.4h12V21"/><path d="M12 3.2l7.5 6.2h-15L12 3.2z"/><path d="M11 21v-4.4h2V21"/>',
+  building:'<path d="M4 21V4.8A1.8 1.8 0 0 1 5.8 3h8.4A1.8 1.8 0 0 1 16 4.8V21"/><path d="M16 10h2.4A1.6 1.6 0 0 1 20 11.6V21"/><path d="M3 21h18"/><path d="M7.5 7h5M7.5 11h5M7.5 15h5"/>',
+  user:'<circle cx="12" cy="8" r="3.6"/><path d="M4.8 20.4a7.2 7.2 0 0 1 14.4 0"/>',
+  userEn:'<circle cx="10" cy="8" r="3.4"/><path d="M3.4 20.2A6.8 6.8 0 0 1 16 17.6"/><path d="M15.6 20.2l2 2 4-4"/>',
+  gender:'<circle cx="10" cy="14" r="4.4"/><path d="M13.2 10.8 19.4 4.6"/><path d="M15.2 4.6h4.2v4.2"/>',
+  badge:'<path d="M9 3.5h6l.7 2.4H20a1 1 0 0 1 1 1V19a1.6 1.6 0 0 1-1.6 1.6H4.6A1.6 1.6 0 0 1 3 19V6.9a1 1 0 0 1 1-1h4.3L9 3.5z"/><circle cx="12" cy="12" r="2.6"/><path d="M8.4 17.4a4.2 4.2 0 0 1 7.2 0"/>',
+  home:'<path d="M3.6 10.4 12 3.6l8.4 6.8"/><path d="M5.4 9.4V20h13.2V9.4"/><path d="M10 20v-5.6h4V20"/>',
+  idcard:'<rect x="2.6" y="5" width="18.8" height="14" rx="2.2"/><circle cx="8.4" cy="11.2" r="2.2"/><path d="M5.4 16.4a3.6 3.6 0 0 1 6 0"/><path d="M14.4 10.4h4M14.4 13.6h4"/>',
+  calendar:'<rect x="3.4" y="5" width="17.2" height="15" rx="2.2"/><path d="M3.4 9.6h17.2"/><path d="M8.4 3.4v3.4M15.6 3.4v3.4"/><path d="M7.6 13h2M11.2 13h2M14.8 13h2M7.6 16.4h2M11.2 16.4h2"/>',
+  family:'<circle cx="8.6" cy="8.4" r="3.2"/><path d="M2.8 19.6a5.8 5.8 0 0 1 11.6 0"/><circle cx="17" cy="9.6" r="2.6"/><path d="M14.4 19.6a4.6 4.6 0 0 1 6.8-4"/>',
+  bank:'<path d="M3 20.6h18"/><path d="M4.6 20.6V10.2M9.4 20.6V10.2M14.6 20.6V10.2M19.4 20.6V10.2"/><path d="M2.6 10.2 12 4.4l9.4 5.8"/><path d="M3 17.4h18"/>',
+  branch:'<path d="M3 21h18"/><path d="M5 21V7l6-3.4V21"/><path d="M11 21V11h7.6v10"/><path d="M14 15h2M14 18h2M7.4 10h1.4M7.4 13.4h1.4"/>',
+  hash:'<path d="M5 9.4h14M5 14.6h14M10 4.6 8.4 19.4M15.6 4.6 14 19.4"/>',
+  phone:'<rect x="6" y="2.6" width="12" height="18.8" rx="2.6"/><path d="M10.4 18.4h3.2"/><path d="M9.6 5.6h4.8"/>',
+  save:'<path d="M5 4.6h10.4L19.4 8.6V18a1.6 1.6 0 0 1-1.6 1.6H5A1.6 1.6 0 0 1 3.4 18V6.2A1.6 1.6 0 0 1 5 4.6z"/><path d="M7.6 4.6v4.8h7.2V4.6"/><path d="M7.6 19.6v-5.2h8.8v5.2"/>',
+  plus:'<path d="M12 5.4v13.2M5.4 12h13.2"/>',
+  refresh:'<path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20.4 4.6v4.8h-4.8"/>',
+  eraser:'<path d="M8.6 20.4H20"/><path d="M4.4 16.6 12 9l5 5-5.4 5.4H7.2l-2.8-2.8z"/><path d="M12 9l3.6-3.6a1.8 1.8 0 0 1 2.6 0l2.4 2.4a1.8 1.8 0 0 1 0 2.6L17 14"/>',
+  search:'<circle cx="10.8" cy="10.8" r="6.4"/><path d="M15.6 15.6 20.4 20.4"/>',
+  filter:'<path d="M4 5.4h16"/><path d="M6.8 10.6h10.4"/><path d="M10 15.8h4"/><path d="M11 19.4h2"/>',
+  x:'<path d="M6 6l12 12M18 6 6 18"/>',
+  check:'<path d="M4.8 12.6l4.6 4.6L19.4 7"/>',
+  alert:'<path d="M12 4.4 21 19.6H3L12 4.4z"/><path d="M12 10v4"/><path d="M12 16.6h.01"/>',
+  info:'<circle cx="12" cy="12" r="8.6"/><path d="M12 11v5.6"/><path d="M12 8h.01"/>',
+  eye:'<path d="M2.4 12S6 5.6 12 5.6 21.6 12 21.6 12 18 18.4 12 18.4 2.4 12 2.4 12z"/><circle cx="12" cy="12" r="3"/>',
+  edit:'<path d="M4 20h4.2L19.4 8.8a2 2 0 0 0 0-2.8l-1.4-1.4a2 2 0 0 0-2.8 0L4 15.8V20z"/><path d="M14.6 6.4l3 3"/>',
+  trash:'<path d="M4.4 7h15.2"/><path d="M9 7V4.8h6V7"/><path d="M6.4 7l.9 12.2A1.6 1.6 0 0 0 8.9 20.6h6.2a1.6 1.6 0 0 0 1.6-1.4L17.6 7"/><path d="M10.4 11v5.4M13.6 11v5.4"/>',
+  cog:'<circle cx="12" cy="12" r="3"/><path d="M19.2 14.6a1.6 1.6 0 0 0 .3 1.8l.1.1a1.7 1.7 0 1 1-2.4 2.4l-.1-.1a1.6 1.6 0 0 0-2.7 1.1v.3a1.7 1.7 0 1 1-3.4 0v-.2a1.6 1.6 0 0 0-2.7-1.2l-.1.1a1.7 1.7 0 1 1-2.4-2.4l.1-.1a1.6 1.6 0 0 0-1.1-2.7h-.3a1.7 1.7 0 1 1 0-3.4h.2A1.6 1.6 0 0 0 5 7.7l-.1-.1A1.7 1.7 0 1 1 7.3 5.2l.1.1a1.6 1.6 0 0 0 2.7-1.1V4a1.7 1.7 0 1 1 3.4 0v.2a1.6 1.6 0 0 0 2.7 1.1l.1-.1a1.7 1.7 0 1 1 2.4 2.4l-.1.1a1.6 1.6 0 0 0 1.1 2.7h.3a1.7 1.7 0 1 1 0 3.4h-.3a1.6 1.6 0 0 0-1.5 1z"/>',
+  dots:'<circle cx="12" cy="5.2" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="18.8" r="1.5"/>',
+  dash:'<rect x="3.4" y="3.4" width="7.2" height="7.2" rx="1.8"/><rect x="13.4" y="3.4" width="7.2" height="7.2" rx="1.8"/><rect x="3.4" y="13.4" width="7.2" height="7.2" rx="1.8"/><rect x="13.4" y="13.4" width="7.2" height="7.2" rx="1.8"/>',
+  entry:'<path d="M11.4 4.6H5.6A1.6 1.6 0 0 0 4 6.2v12.2A1.6 1.6 0 0 0 5.6 20h12.2a1.6 1.6 0 0 0 1.6-1.6v-5.8"/><path d="M17.2 3.6l3.2 3.2-7.4 7.4H9.8v-3.2l7.4-7.4z"/>',
+  people:'<circle cx="9" cy="8.2" r="3.4"/><path d="M2.8 19.8a6.2 6.2 0 0 1 12.4 0"/><circle cx="17.4" cy="9.4" r="2.6"/><path d="M15.6 19.8a4.6 4.6 0 0 1 5.6-4.4"/>',
+  download:'<path d="M12 3.6v11"/><path d="M7.6 10.6 12 15l4.4-4.4"/><path d="M4 19.4h16"/>',
+  upload:'<path d="M12 15V3.8"/><path d="M7.6 8.2 12 3.8l4.4 4.4"/><path d="M4 19.4h16"/>',
+  shield:'<path d="M12 2.8l7.4 3v5.6c0 4.6-3.1 8.4-7.4 10.4-4.3-2-7.4-5.8-7.4-10.4V5.8l7.4-3z"/><path d="M9.6 12.2l1.8 1.8 3.4-3.6"/>',
+  keyboard:'<rect x="2.4" y="6.4" width="19.2" height="11.2" rx="2"/><path d="M6 9.6h.01M9.2 9.6h.01M12.4 9.6h.01M15.6 9.6h.01M18 9.6h.01M6 12.8h.01M9.2 12.8h.01M12.4 12.8h.01M15.6 12.8h.01M18 12.8h.01M8 15.6h8"/>',
+  file:'<path d="M13.4 3.4H7a1.8 1.8 0 0 0-1.8 1.8v13.6A1.8 1.8 0 0 0 7 20.6h10a1.8 1.8 0 0 0 1.8-1.8V8.8l-5.4-5.4z"/><path d="M13.4 3.4v5.4h5.4"/>',
+  spark:'<path d="M12 3.2l1.9 5 5 1.9-5 1.9-1.9 5-1.9-5-5-1.9 5-1.9 1.9-5z"/><path d="M18.6 16.4l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z"/>',
+  chevL:'<path d="M14.4 6 8.4 12l6 6"/>',
+  chevR:'<path d="M9.6 6l6 6-6 6"/>',
+  arrowR:'<path d="M4.6 12h14"/><path d="M13 6.4l5.6 5.6-5.6 5.6"/>',
+  undo:'<path d="M4 12a8 8 0 1 0 8-8 8 8 0 0 0-5.9 2.6L3.6 9"/><path d="M3.6 4.4v4.8h4.8"/>',
+  db:'<ellipse cx="12" cy="6" rx="7.6" ry="3"/><path d="M4.4 6v12c0 1.7 3.4 3 7.6 3s7.6-1.3 7.6-3V6"/><path d="M4.4 12c0 1.7 3.4 3 7.6 3s7.6-1.3 7.6-3"/>',
+  imam:'<circle cx="12" cy="7.4" r="3.2"/><path d="M5.6 20.4a6.4 6.4 0 0 1 12.8 0"/><path d="M8.4 4.6c1.4-1.4 5.8-1.4 7.2 0"/>',
+  muezzin:'<path d="M4 10v4l9.4 3.8V6.2L4 10z"/><path d="M17 9a4.6 4.6 0 0 1 0 6"/><path d="M19.4 6.6a8 8 0 0 1 0 10.8"/>',
+  khadem:'<path d="M14.4 3.6l6 6"/><path d="M9.6 8.4l6 6"/><path d="M3.6 20.4l5.2-11.4 6.2 6.2L3.6 20.4z"/>',
+  purohit:'<path d="M12 3.2s4.8 4.2 4.8 8.6a4.8 4.8 0 0 1-9.6 0c0-2 1-3.4 2-4.4 0 1.4 1 2.4 2 2.4 1.4 0 1.9-1.4.9-3.8-.5-1.2-.6-2.2-.1-2.8z"/><path d="M8 20.6h8"/>',
+  sebait:'<path d="M18.4 16.4H5.6l1.8-2.6V10a4.6 4.6 0 0 1 9.2 0v3.8l1.8 2.6z"/><path d="M9.8 19a2.4 2.4 0 0 0 4.4 0"/>'
+};
+function ic(name, cls){
+  const p = I[name] || '';
+  return '<svg class="ic '+(cls||'')+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'+p+'</svg>';
+}
+
+/* -------------------------- 3. Utils -------------------------- */
+const BN_DIGITS = '০১২৩৪৫৬৭৮৯';
+function toBn(n){ return String(n).replace(/[0-9]/g, d=>BN_DIGITS[+d]); }
+function toEnDigits(s){
+  return String(s==null?'':s)
+    .replace(/[০-৯]/g, d=>String(BN_DIGITS.indexOf(d)))
+    .replace(/[٠-٩]/g, d=>String(d.charCodeAt(0)-1632));
+}
+function digitsOnly(s){ return toEnDigits(s).replace(/[^0-9]/g,''); }
+function cleanText(s){
+  return String(s==null?'':s)
+    .replace(/[\u0000-\u001F\u007F\u200B-\u200D\uFEFF]/g,'')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+function esc(s){
+  return String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function xesc(s){
+  return String(s==null?'':s)
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g,'')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&apos;');
+}
+function pad2(n){ return (n<10?'0':'')+n; }
+function uid(){
+  const a = new Uint8Array(8);
+  (self.crypto||{getRandomValues:null}).getRandomValues ? crypto.getRandomValues(a) : a.forEach((_,i)=>a[i]=Math.floor(Math.random()*256));
+  return Date.now().toString(36)+'-'+Array.from(a).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+function debounce(fn, ms){ let t; return function(){ clearTimeout(t); const a=arguments, c=this; t=setTimeout(()=>fn.apply(c,a), ms); }; }
+function isMobile(){ return window.matchMedia('(max-width:860px)').matches; }
+function nowIso(){ return new Date().toISOString(); }
+function keyNorm(s){ return cleanText(s).toLowerCase().replace(/\s+/g,''); }
+function $(sel, root){ return (root||document).querySelector(sel); }
+function $$(sel, root){ return Array.prototype.slice.call((root||document).querySelectorAll(sel)); }
+function paintIcons(root){
+
+  $$('[data-i]', root||document).forEach(el=>{
+    if(el.dataset.painted==='1') return;
+    el.innerHTML = ic(el.dataset.i, el.classList.contains('ic-s')?'ic-s':'') + el.innerHTML;
+    el.dataset.painted='1';
+  });
+}
+
+/* -------------------------- 4. Storage (IndexedDB + safe fallback) -------------------------- */
+const Store = (function(){
+  const DB_NAME='ni_beneficiary_db', DB_VER=1, REC='records', META='meta';
+  let db=null, useIdb=true;
+  const LS_REC='ni_records_fallback', LS_META='ni_meta_fallback';
+
+  function open(){
+    return new Promise(resolve=>{
+      let req;
+      try { req = indexedDB.open(DB_NAME, DB_VER); }
+      catch(e){ useIdb=false; return resolve(); }
+      if(!req){ useIdb=false; return resolve(); }
+      req.onupgradeneeded = function(e){
+        const d = e.target.result;
+        if(!d.objectStoreNames.contains(REC)){
+          const s = d.createObjectStore(REC,{keyPath:'id'});
+          s.createIndex('nid','nid',{unique:false});
+          s.createIndex('mobile','mobile',{unique:false});
+          s.createIndex('createdAt','createdAt',{unique:false});
+        }
+        if(!d.objectStoreNames.contains(META)) d.createObjectStore(META,{keyPath:'key'});
+      };
+      req.onsuccess = function(){ db=req.result; db.onversionchange=()=>{try{db.close();}catch(e){}}; resolve(); };
+      req.onerror = function(){ useIdb=false; resolve(); };
+      req.onblocked = function(){ useIdb=false; resolve(); };
+    });
+  }
+  function tx(store, mode){ return db.transaction(store, mode).objectStore(store); }
+  function pr(request){ return new Promise((res,rej)=>{ request.onsuccess=()=>res(request.result); request.onerror=()=>rej(request.error); }); }
+  function lsGet(k, def){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):def; }catch(e){ return def; } }
+  function lsSet(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+
+  return {
+    init: open,
+    mode: ()=> useIdb && db ? 'IndexedDB' : 'Local Storage',
+    async all(){
+      if(useIdb && db){ try{ return (await pr(tx(REC,'readonly').getAll()))||[]; }catch(e){} }
+      return lsGet(LS_REC, []);
+    },
+    async put(rec){
+      if(useIdb && db){ try{ await pr(tx(REC,'readwrite').put(rec)); return true; }catch(e){} }
+      const a = lsGet(LS_REC, []); const i = a.findIndex(r=>r.id===rec.id);
+      if(i>=0) a[i]=rec; else a.push(rec); lsSet(LS_REC,a); return true;
+    },
+    async putMany(list){
+      if(useIdb && db){
+        try{
+          const t = db.transaction(REC,'readwrite'), s = t.objectStore(REC);
+          list.forEach(r=>s.put(r));
+          await new Promise((res,rej)=>{ t.oncomplete=res; t.onerror=()=>rej(t.error); t.onabort=()=>rej(t.error); });
+          return true;
+        }catch(e){}
+      }
+      const a = lsGet(LS_REC, []);
+      list.forEach(rec=>{ const i=a.findIndex(r=>r.id===rec.id); if(i>=0)a[i]=rec; else a.push(rec); });
+      lsSet(LS_REC,a); return true;
+    },
+    async del(id){
+      if(useIdb && db){ try{ await pr(tx(REC,'readwrite').delete(id)); return true; }catch(e){} }
+      lsSet(LS_REC, lsGet(LS_REC,[]).filter(r=>r.id!==id)); return true;
+    },
+    async clear(){
+      if(useIdb && db){ try{ await pr(tx(REC,'readwrite').clear()); }catch(e){} }
+      lsSet(LS_REC, []); return true;
+    },
+    async metaGet(key){
+      if(useIdb && db){ try{ const r = await pr(tx(META,'readonly').get(key)); return r?r.value:null; }catch(e){} }
+      const m = lsGet(LS_META,{}); return key in m ? m[key] : null;
+    },
+    async metaSet(key, value){
+      if(useIdb && db){ try{ await pr(tx(META,'readwrite').put({key:key, value:value})); return true; }catch(e){} }
+      const m = lsGet(LS_META,{}); m[key]=value; lsSet(LS_META,m); return true;
+    },
+    async metaDel(key){
+      if(useIdb && db){ try{ await pr(tx(META,'readwrite').delete(key)); return true; }catch(e){} }
+      const m = lsGet(LS_META,{}); delete m[key]; lsSet(LS_META,m); return true;
+    }
+  };
+})();
+
+/* Small UI preferences → localStorage only */
+const Prefs = {
+  get(k, def){ try{ const v=localStorage.getItem('ni_pref_'+k); return v===null?def:JSON.parse(v); }catch(e){ return def; } },
+  set(k, v){ try{ localStorage.setItem('ni_pref_'+k, JSON.stringify(v)); }catch(e){} }
+};
+
+/* -------------------------- 5. App state -------------------------- */
+const state = {
+  tab: 'dash',
+  records: [],
+  page: 1,
+  query: '',
+  filters: { areas:[], types:[], designations:[], genders:[] },
+  editingId: null,
+  retainInstitution: Prefs.get('retain', true),
+  autoDraft: Prefs.get('draft', true),
+  exportFormat: Prefs.get('exportFmt','excel'),
+  lastDeleted: null,
+  dashDrawn: false
+};
+
+/* -------------------------- 6. Toast -------------------------- */
+const toastBox = $('#toasts');
+function toast(opt){
+  const t = document.createElement('div');
+  const kind = opt.kind||'ok';
+  const icons = { ok:'check', er:'alert', wr:'alert', in:'info' };
+  t.className = 'toast '+kind;
+  t.innerHTML =
+    '<div class="ti">'+ (opt.spinner ? '<span class="spin d"></span>' : ic(icons[kind]||'info')) +'</div>'+
+    '<div class="tb"><b>'+esc(opt.title||'')+'</b>'+(opt.msg?'<small>'+esc(opt.msg)+'</small>':'')+'<div class="ta"></div></div>'+
+    '<button class="tx" type="button" aria-label="বন্ধ করুন">'+ic('x','ic-s')+'</button>';
+  const acts = $('.ta', t);
+  (opt.actions||[]).forEach(a=>{
+    const b = document.createElement('button'); b.type='button'; b.textContent=a.label;
+    b.addEventListener('click', ()=>{ try{ a.onClick(); } finally { remove(); } });
+    acts.appendChild(b);
+  });
+  if(!(opt.actions||[]).length) acts.remove();
+  let timer=null;
+  function remove(){ if(timer) clearTimeout(timer); if(t.parentNode){ t.style.opacity='0'; t.style.transform='translateY(8px)'; setTimeout(()=>t.remove(),160);} }
+  $('.tx', t).addEventListener('click', remove);
+  toastBox.appendChild(t);
+  const ms = opt.duration===0 ? 0 : (opt.duration || 3200);
+  if(ms) timer = setTimeout(remove, ms);
+  while(toastBox.children.length>4) toastBox.firstChild.remove();
+  return { close: remove, update(o){
+      if(o.title!==undefined) $('.tb b', t).textContent=o.title;
+      if(o.msg!==undefined){ let s=$('.tb small',t); if(!s){ s=document.createElement('small'); $('.tb',t).insertBefore(s, $('.tb b',t).nextSibling);} s.textContent=o.msg; }
+      if(o.kind){ t.className='toast '+o.kind; $('.ti',t).innerHTML = ic(icons[o.kind]||'info'); }
+      if(o.duration!==undefined){ if(timer) clearTimeout(timer); if(o.duration) timer=setTimeout(remove,o.duration); }
+    }};
+}
+
+/* -------------------------- 7. Modal helpers -------------------------- */
+let lastFocused=null;
+function openModal(id){
+  lastFocused = document.activeElement;
+  const o = document.getElementById(id);
+  o.classList.add('on');
+  document.body.style.overflow='hidden';
+  const f = o.querySelector('input,select,button:not([data-close])'); if(f) setTimeout(()=>{ try{f.focus();}catch(e){} }, 40);
+}
+function closeModal(o){
+  (o instanceof Element ? o : document.getElementById(o)).classList.remove('on');
+  if(!$$('.ovl.on').length) document.body.style.overflow='';
+  if(lastFocused && lastFocused.focus){ try{ lastFocused.focus(); }catch(e){} }
+}
+
+$$('.ovl').forEach(o=>{
+  o.addEventListener('click', e=>{ if(e.target===o) closeModal(o); });
+
+  $$('[data-close]', o).forEach(b=>b.addEventListener('click', ()=>closeModal(o)));
+});
+function confirmBox(opt){
+  return new Promise(resolve=>{
+    const o = $('#ovlConfirm');
+    $('#cfTitle').textContent = opt.title||'নিশ্চিতকরণ';
+    $('#cfBody').innerHTML =
+      '<div class="banner '+(opt.danger?'du':'ed')+'" style="margin:0">'+
+      '<span>'+ic(opt.danger?'alert':'info')+'</span><div class="bx"><b>'+esc(opt.heading||'')+'</b>'+esc(opt.message||'')+'</div></div>'+
+      (opt.extraHtml||'');
+    const ok = $('#cfOk');
+    ok.className = 'btn '+(opt.danger?'btn-d':'btn-p');
+    ok.innerHTML = ic(opt.danger?'trash':'check')+'<span>'+esc(opt.okLabel||'নিশ্চিত করুন')+'</span>';
+    function done(v){ ok.removeEventListener('click', yes); o.removeEventListener('click', outside); $$('[data-close]',o).forEach(b=>b.removeEventListener('click', no)); closeModal(o); resolve(v); }
+    function yes(){ done(true); } function no(){ done(false); }
+    function outside(e){ if(e.target===o) done(false); }
+    ok.addEventListener('click', yes);
+    o.addEventListener('click', outside);
+
+    $$('[data-close]',o).forEach(b=>b.addEventListener('click', no));
+    openModal('ovlConfirm');
+    setTimeout(()=>{ try{ ok.focus(); }catch(e){} },50);
+  });
+}
+
+/* -------------------------- 8. Navigation -------------------------- */
+const TABS = [
+  {id:'dash', label:'Dashboard', bnLabel:'ড্যাশবোর্ড', icon:'dash', panel:'p-dash'},
+  {id:'entry', label:'Entry', bnLabel:'এন্ট্রি', icon:'entry', panel:'p-entry'},
+  {id:'bene', label:'উপকারভোগী', bnLabel:'উপকারভোগী', icon:'people', panel:'p-bene'}
+];
+function buildNav(){
+  $('#topTabs').innerHTML = TABS.map((t,i)=>
+    '<button class="tab" type="button" data-tab="'+t.id+'" role="tab">'+ic(t.icon)+'<span>'+esc(t.label)+'</span><kbd>Alt+'+(i+1)+'</kbd></button>').join('');
+  $('#bottomNav').innerHTML = TABS.map(t=>
+    '<button type="button" data-tab="'+t.id+'">'+ic(t.icon)+'<span>'+esc(t.id==='dash'?'ড্যাশবোর্ড':(t.id==='entry'?'এন্ট্রি':'উপকারভোগী'))+'</span></button>').join('');
+
+  $$('[data-tab]').forEach(b=>b.addEventListener('click', ()=>go(b.dataset.tab)));
+}
+function go(tab){
+  state.tab = tab;
+  TABS.forEach(t=>{
+    const on = t.id===tab;
+    document.getElementById(t.panel).classList.toggle('on', on);
+  });
+
+  $$('[data-tab]').forEach(b=>{
+    const on = b.dataset.tab===tab;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-selected', on?'true':'false');
+  });
+  window.scrollTo({top:0, behavior:'instant' in document.documentElement.style ? 'auto':'auto'});
+  if(tab==='dash') renderDashboard(true);
+  if(tab==='bene') renderList();
+  if(tab==='entry'){
+    const f = $('#f_instName');
+    if(!isMobile() && f && !state.editingId) setTimeout(()=>{ const t=firstEmptyField(); if(t) try{t.focus();}catch(e){} }, 60);
+  }
+}
+
+/* -------------------------- 9. Form -------------------------- */
+const form = $('#entryForm');
+const FKEYS = ['instType','instName','union','locality','nameBn','nameEn','gender','designation','address','nid','dob','fatherName','bankAccount','bankBranch','routing','mobile'];
+const FIELD_META = {
+  instType:{label:'ধর্মীয় প্রতিষ্ঠানের ধরন', icon:'mosque'},
+  instName:{label:'প্রতিষ্ঠানের নাম', icon:'building'},
+  union:{label:'ইউনিয়ন/পৌরসভার নাম', icon:'map'},
+  locality:{label:'গ্রাম/পৌরসভার ওয়ার্ড নং', icon:'village'},
+  nameBn:{label:'সম্মানিভোগীর নাম', icon:'user'},
+  nameEn:{label:'সম্মানিভোগীর নাম (ইংরেজি)', icon:'userEn', mono:true},
+  gender:{label:'লিঙ্গ', icon:'gender'},
+  designation:{label:'সম্মানিভোগীর পদবী', icon:'badge'},
+  address:{label:'স্থায়ী ঠিকানা', icon:'home'},
+  nid:{label:'জাতীয় পরিচয়পত্র নম্বর', icon:'idcard', mono:true},
+  dob:{label:'জন্ম তারিখ', icon:'calendar', mono:true},
+  fatherName:{label:'পিতার নাম', icon:'family'},
+  bankAccount:{label:'ব্যাংক একাউন্ট নম্বর', icon:'bank', mono:true},
+  bankBranch:{label:'ব্যাংক ও শাখার নাম', icon:'branch', mono:true},
+  routing:{label:'ব্যাংকের রাউটিং নম্বর', icon:'hash', mono:true},
+  mobile:{label:'মোবাইল নম্বর', icon:'phone', mono:true}
+};
+let currentType = '';
+
+function fillStaticOptions(){
+  const u = $('#f_union');
+  u.innerHTML = '<option value="">নির্বাচন করুন</option>' +
+    UNIONS.map(x=>'<option value="'+esc(x)+'">'+esc(x)+'</option>').join('') +
+    '<option value="'+esc(POURA)+'">'+esc(POURA)+'</option>';
+}
+function setType(v, silent){
+  currentType = v;
+
+  $$('[data-radio="instType"]').forEach(b=>{
+    const on = b.dataset.value===v;
+    b.setAttribute('aria-checked', on?'true':'false');
+    b.tabIndex = on ? 0 : -1;
+  });
+  if(!v){ $$('[data-radio="instType"]')[0].tabIndex = 0; }
+  $('#lblInstName').textContent = v==='মন্দির' ? 'মন্দিরের নাম' : (v==='মসজিদ' ? 'মসজিদের নাম' : 'প্রতিষ্ঠানের নাম');
+  $('#f_instName').placeholder = v==='মন্দির' ? 'মন্দিরের পূর্ণ নাম লিখুন' : (v==='মসজিদ' ? 'মসজিদের পূর্ণ নাম লিখুন' : 'প্রতিষ্ঠানের পূর্ণ নাম লিখুন');
+  const d = $('#f_designation'), prev = d.value;
+  const list = DESIGNATIONS[v]||[];
+  d.innerHTML = list.length
+    ? '<option value="">নির্বাচন করুন</option>'+list.map(x=>'<option value="'+esc(x)+'">'+esc(x)+'</option>').join('')
+    : '<option value="">প্রথমে প্রতিষ্ঠানের ধরন নির্বাচন করুন</option>';
+  if(list.indexOf(prev)>=0) d.value = prev;
+  clearErr('instType');
+  refreshDatalists();
+  if(!silent) queueDraft();
+}
+function setLocalityLabel(){
+  const isP = $('#f_union').value===POURA;
+  $('#lblLocality').textContent = isP ? 'পৌরসভার ওয়ার্ড নং' : 'গ্রাম/পৌরসভার ওয়ার্ড নং';
+  $('#f_locality').placeholder = isP ? 'ওয়ার্ড নং লিখুন (যেমন: ০৫)' : 'গ্রামের নাম লিখুন বা নির্বাচন করুন';
+}
+function refreshDatalists(){
+  const area = $('#f_union').value;
+  const insts = new Set(), locs = new Set(), banks = new Set(), routes = new Set();
+  for(const r of state.records){
+    if((!currentType || r.instType===currentType) && (!area || r.union===area)) insts.add(r.instName);
+    if(!area || r.union===area) locs.add(r.locality);
+    if(r.bankBranch) banks.add(r.bankBranch);
+    if(r.routing) routes.add(r.routing);
+  }
+  const fill = (id,set)=>{ document.getElementById(id).innerHTML = Array.from(set).filter(Boolean).sort().slice(0,400).map(v=>'<option value="'+esc(v)+'"></option>').join(''); };
+  fill('dl_inst', insts); fill('dl_loc', locs); fill('dl_bank', banks); fill('dl_route', routes);
+}
+function getVal(k){
+  if(k==='instType') return currentType;
+  const el = document.getElementById('f_'+k);
+  return el ? el.value : '';
+}
+function setVal(k, v){
+  if(k==='instType'){ setType(v||'', true); return; }
+  const el = document.getElementById('f_'+k);
+  if(el) el.value = v==null?'':v;
+  if(k==='union') setLocalityLabel();
+}
+function collectForm(){
+  const d = {
+    district: DISTRICT, upazila: UPAZILA, cityWard: '',
+    instType: currentType,
+    instName: cleanText(getVal('instName')),
+    union: getVal('union'),
+    locality: cleanText(getVal('locality')),
+    nameBn: cleanText(getVal('nameBn')),
+    nameEn: cleanText(getVal('nameEn')),
+    gender: getVal('gender'),
+    designation: getVal('designation'),
+    address: cleanText(getVal('address')),
+    nid: digitsOnly(getVal('nid')),
+    dob: cleanText(getVal('dob')),
+    fatherName: cleanText(getVal('fatherName')),
+    bankAccount: digitsOnly(getVal('bankAccount')),
+    bankBranch: cleanText(getVal('bankBranch')),
+    routing: digitsOnly(getVal('routing')),
+    mobile: digitsOnly(getVal('mobile'))
+  };
+  return d;
+}
+function isFormEmpty(){
+  return FKEYS.every(k=>!cleanText(getVal(k)));
+}
+function clearErr(k){
+  const e = form.querySelector('[data-err="'+k+'"]');
+  if(e) e.closest('.fld').classList.remove('bad');
+}
+function clearAllErr(){ $$('.fld.bad', form).forEach(f=>f.classList.remove('bad')); }
+function showErrors(errs){
+  clearAllErr();
+  Object.keys(errs).forEach(k=>{
+    const e = form.querySelector('[data-err="'+k+'"]');
+    if(!e) return;
+    e.closest('.fld').classList.add('bad');
+    $('span:last-child', e).textContent = errs[k];
+  });
+}
+function focusField(k){
+  const el = k==='instType' ? $('[data-radio="instType"]') : document.getElementById('f_'+k);
+  if(el){ try{ el.focus({preventScroll:false}); }catch(e){ el.focus(); }
+    el.scrollIntoView({block:'center', behavior:'smooth'});
+  }
+}
+function firstEmptyField(){
+  for(const k of FKEYS){
+    if(k==='instType'){ if(!currentType) return $('[data-radio="instType"]'); continue; }
+    const el = document.getElementById('f_'+k);
+    if(el && !el.value) return el;
+  }
+  return document.getElementById('f_nameBn');
+}
+
+/* ---- validation ---- */
+function validate(d){
+  const e = {};
+  if(!d.instType) e.instType = 'ধর্মীয় প্রতিষ্ঠানের ধরন নির্বাচন করুন।';
+  if(!d.instName) e.instName = 'প্রতিষ্ঠানের নাম লিখুন।';
+  else if(d.instName.length<3) e.instName = 'প্রতিষ্ঠানের নাম কমপক্ষে ৩ অক্ষরের হতে হবে।';
+  if(!d.union) e.union = 'ইউনিয়ন/পৌরসভা নির্বাচন করুন।';
+  if(!d.locality) e.locality = ($('#f_union').value===POURA ? 'পৌরসভার ওয়ার্ড নং লিখুন।' : 'গ্রামের নাম লিখুন।');
+  if(!d.nameBn) e.nameBn = 'সম্মানিভোগীর নাম (বাংলা) লিখুন।';
+  if(!d.nameEn) e.nameEn = 'সম্মানিভোগীর নাম (ইংরেজি) লিখুন।';
+  else if(!/^[A-Za-z .'\-]+$/.test(d.nameEn)) e.nameEn = 'ইংরেজি নামে শুধু ইংরেজি বর্ণ ব্যবহার করুন।';
+  if(!d.gender) e.gender = 'লিঙ্গ নির্বাচন করুন।';
+  if(!d.designation) e.designation = 'সম্মানিভোগীর পদবী নির্বাচন করুন।';
+  else if((DESIGNATIONS[d.instType]||[]).indexOf(d.designation)<0) e.designation = 'নির্বাচিত প্রতিষ্ঠানের জন্য পদবীটি সঠিক নয়।';
+  if(!d.address) e.address = 'স্থায়ী ঠিকানা লিখুন।';
+  if(!d.nid) e.nid = 'জাতীয় পরিচয়পত্র নম্বর লিখুন।';
+  else if(d.nid.length!==10 && d.nid.length!==17) e.nid = 'জাতীয় পরিচয়পত্র নম্বর ১০ অথবা ১৭ সংখ্যার হতে হবে।';
+  if(!d.dob) e.dob = 'জন্ম তারিখ নির্বাচন করুন।';
+  else {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(d.dob);
+    if(!m) e.dob = 'জন্ম তারিখ বছর-মাস-দিন (YYYY-MM-DD) ফরম্যাটে হতে হবে।';
+    else {
+      const y=+m[1], mo=+m[2], dd=+m[3];
+      const dt = new Date(Date.UTC(y,mo-1,dd));
+      const valid = dt.getUTCFullYear()===y && dt.getUTCMonth()===mo-1 && dt.getUTCDate()===dd;
+      if(!valid) e.dob = 'তারিখটি সঠিক নয়।';
+      else if(y<1900) e.dob = 'জন্ম সাল ১৯০০ সালের পরে হতে হবে।';
+      else if(dt.getTime() > Date.now()) e.dob = 'জন্ম তারিখ ভবিষ্যতের হতে পারবে না।';
+    }
+  }
+  if(!d.fatherName) e.fatherName = 'পিতার নাম লিখুন।';
+  if(!d.bankAccount) e.bankAccount = 'ব্যাংক একাউন্ট নম্বর লিখুন।';
+  else if(d.bankAccount.length<11) e.bankAccount = 'ব্যাংক একাউন্ট নম্বর কমপক্ষে ১১ সংখ্যার হতে হবে।';
+  if(!d.bankBranch) e.bankBranch = 'ব্যাংক ও শাখার নাম লিখুন।';
+  else if(!/^[A-Za-z0-9 .,'()\-\/&]+$/.test(d.bankBranch)) e.bankBranch = 'ব্যাংক ও শাখার নাম ইংরেজিতে লিখুন।';
+  if(!d.routing) e.routing = 'ব্যাংকের রাউটিং নম্বর লিখুন।';
+  else if(d.routing.length<6 || d.routing.length>12) e.routing = 'রাউটিং নম্বর ৬ থেকে ১২ সংখ্যার মধ্যে হতে হবে (সাধারণত ৯ সংখ্যা)।';
+  if(!d.mobile) e.mobile = 'মোবাইল নম্বর লিখুন।';
+  else if(d.mobile.length!==11) e.mobile = 'মোবাইল নম্বর অবশ্যই ১১ সংখ্যার হতে হবে।';
+  else if(!/^01[3-9]\d{8}$/.test(d.mobile)) e.mobile = 'মোবাইল নম্বরটি সঠিক নয় (০১ দিয়ে শুরু হতে হবে)।';
+  return { ok: Object.keys(e).length===0, errors:e };
+}
+function findDuplicates(d, ignoreId){
+  const out = [];
+  for(const r of state.records){
+    if(r.id===ignoreId) continue;
+    if(d.nid && r.nid===d.nid) out.push({field:'nid', label:'জাতীয় পরিচয়পত্র নম্বর', msg:'এই NID নম্বরটি পূর্বে নিবন্ধিত আছে।', rec:r});
+    if(d.mobile && r.mobile===d.mobile) out.push({field:'mobile', label:'মোবাইল নম্বর', msg:'এই মোবাইল নম্বরটি পূর্বে ব্যবহৃত হয়েছে।', rec:r});
+    if(d.bankAccount && r.bankAccount===d.bankAccount) out.push({field:'bankAccount', label:'ব্যাংক একাউন্ট নম্বর', msg:'এই ব্যাংক একাউন্ট নম্বরটি পূর্বে ব্যবহৃত হয়েছে।', rec:r});
+  }
+  const seen = new Set();
+  return out.filter(x=>{ const k=x.field; if(seen.has(k)) return false; seen.add(k); return true; });
+}
+function showDupBanner(dups){
+  const box = $('#dupBanner');
+  if(!dups.length){ box.innerHTML=''; return; }
+  box.innerHTML =
+    '<div class="banner du">'+ic('alert')+
+    '<div class="bx"><b>সম্ভাব্য ডুপ্লিকেট তথ্য পাওয়া গেছে</b>'+
+    dups.map(d=>'<div>• '+esc(d.msg)+' <span class="en">('+esc(d.rec.nameBn||d.rec.nameEn)+')</span></div>').join('')+
+    '<div class="acts"><button class="btn btn-s" type="button" id="dupView">'+ic('eye','ic-s')+'বিদ্যমান রেকর্ড দেখুন</button>'+
+    '<button class="btn btn-s" type="button" id="dupHide">'+ic('x','ic-s')+'বন্ধ করুন</button></div></div></div>';
+  $('#dupView').addEventListener('click', ()=>openDetailsForRecord(dups[0].rec.id));
+  $('#dupHide').addEventListener('click', ()=>{ box.innerHTML=''; });
+}
+
+/* ---- keyboard workflow: Tab / Shift+Tab (native) + Enter (save) ---- */
+function orderedFocusables(){
+  const out = [];
+  FKEYS.forEach(k=>{
+    if(k==='instType'){ const b = $('[data-radio="instType"][aria-checked="true"]') || $('[data-radio="instType"]'); if(b) out.push(b); return; }
+    const el = document.getElementById('f_'+k);
+    if(el && !el.disabled && el.offsetParent!==null) out.push(el);
+  });
+  return out;
+}
+function focusNextFrom(el){
+  const list = orderedFocusables();
+  const i = list.indexOf(el);
+  const next = i>=0 && i<list.length-1 ? list[i+1] : null;
+  if(next){ try{ next.focus(); }catch(e){} next.scrollIntoView({block:'center', behavior:'smooth'}); }
+  else doSave('default');
+}
+form.addEventListener('keydown', function(e){
+  if(e.key!=='Enter') return;
+  const t = e.target;
+  if(t && t.tagName==='TEXTAREA') return;
+  e.preventDefault();
+  e.stopPropagation();
+  if(e.shiftKey){ doSave('new'); return; }
+  if(isMobile() && t && (t.tagName==='INPUT') && t.type!=='date'){ focusNextFrom(t); return; }
+  doSave('default');
+});
+form.addEventListener('submit', e=>{ e.preventDefault(); doSave('default'); });
+
+/* institution type radio group keyboard */
+$('#typeGroup').addEventListener('keydown', function(e){
+  const btns = $$('[data-radio="instType"]');
+  const i = btns.indexOf(document.activeElement);
+  if(['ArrowRight','ArrowDown'].includes(e.key)){ e.preventDefault(); const n=btns[(i+1+btns.length)%btns.length]; setType(n.dataset.value); n.focus(); }
+  else if(['ArrowLeft','ArrowUp'].includes(e.key)){ e.preventDefault(); const n=btns[(i-1+btns.length)%btns.length]; setType(n.dataset.value); n.focus(); }
+  else if(e.key===' '){ e.preventDefault(); const b=btns[i]; if(b) setType(b.dataset.value); }
+});
+
+$$('[data-radio="instType"]').forEach(b=>b.addEventListener('click', ()=>{ setType(b.dataset.value); if(!isMobile()) $('#f_instName').focus(); }));
+
+/* mobile "পরবর্তী" buttons */
+function addNextButtons(){
+  FKEYS.forEach((k,idx)=>{
+    if(k==='instType') return;
+    const el = document.getElementById('f_'+k);
+    if(!el || el.readOnly) return;
+    const ctl = el.closest('.ctl');
+    if(!ctl || $('.nextbtn', ctl)) return;
+    ctl.classList.add('has-next');
+    const b = document.createElement('button');
+    b.type='button'; b.className='nextbtn'; b.setAttribute('aria-label','পরবর্তী');
+    b.title = 'পরবর্তী';
+    b.innerHTML = ic('arrowR','ic-s');
+    b.addEventListener('click', ()=>focusNextFrom(el));
+    ctl.appendChild(b);
+  });
+}
+
+/* ---- normalization on input ---- */
+function bindNormalizers(){
+  const numFields = { nid:17, mobile:11, bankAccount:25, routing:12 };
+  Object.keys(numFields).forEach(k=>{
+    const el = document.getElementById('f_'+k);
+    el.addEventListener('input', function(){
+      const before = el.value;
+      let v = digitsOnly(before).slice(0, numFields[k]);
+      if(v!==before){ const p = el.selectionStart; el.value = v; try{ el.setSelectionRange(Math.min(p,v.length), Math.min(p,v.length)); }catch(e){} }
+      clearErr(k);
+    });
+    el.addEventListener('blur', ()=>{ if(['nid','mobile','bankAccount'].includes(k) && el.value){ liveDupCheck(); } });
+  });
+  ['instName','locality','nameBn','nameEn','address','fatherName','bankBranch'].forEach(k=>{
+    const el = document.getElementById('f_'+k);
+    el.addEventListener('blur', ()=>{ el.value = cleanText(el.value); });
+    el.addEventListener('input', ()=>clearErr(k));
+  });
+  $('#f_nameEn').addEventListener('blur', function(){ this.value = cleanText(this.value); });
+  $('#f_union').addEventListener('change', function(){ setLocalityLabel(); clearErr('union'); refreshDatalists(); queueDraft(); });
+  $('#f_gender').addEventListener('change', ()=>clearErr('gender'));
+  $('#f_designation').addEventListener('change', ()=>clearErr('designation'));
+  $('#f_dob').addEventListener('change', ()=>clearErr('dob'));
+  $('#f_instName').addEventListener('change', prefillFromInstitution);
+  form.addEventListener('input', queueDraft);
+  form.addEventListener('change', queueDraft);
+}
+function liveDupCheck(){
+  const d = collectForm();
+  const dups = findDuplicates(d, state.editingId).filter(x=>d[x.field]);
+  showDupBanner(dups);
+}
+/* একই প্রতিষ্ঠানের নাম টাইপ করলে locality/union স্বয়ংক্রিয়ভাবে প্রস্তাব */
+function prefillFromInstitution(){
+  const name = keyNorm($('#f_instName').value);
+  if(!name) return;
+  const m = state.records.find(r=>keyNorm(r.instName)===name && (!currentType || r.instType===currentType));
+  if(!m) return;
+  if(!$('#f_union').value){ $('#f_union').value = m.union; setLocalityLabel(); }
+  if(!$('#f_locality').value) $('#f_locality').value = m.locality;
+  if(!currentType) setType(m.instType, true);
+  refreshDatalists();
+}
+
+/* -------------------------- 10. Draft (auto-save / recovery) -------------------------- */
+const queueDraft = debounce(async function(){
+  if(!state.autoDraft || state.editingId) return;
+  if(isFormEmpty()){ await Store.metaDel('draft'); return; }
+  const d = collectForm();
+  await Store.metaSet('draft', {data:d, savedAt: nowIso()});
+}, 550);
+
+async function checkDraft(){
+  const dr = await Store.metaGet('draft');
+  const box = $('#draftBanner');
+  if(!dr || !dr.data){ box.innerHTML=''; return; }
+  const d = dr.data;
+  const who = d.nameBn || d.nameEn || d.instName || 'অসম্পূর্ণ এন্ট্রি';
+  const when = new Date(dr.savedAt);
+  box.innerHTML =
+    '<div class="banner dr">'+ic('undo')+
+    '<div class="bx"><b>অসম্পূর্ণ এন্ট্রি পুনরুদ্ধার করুন</b>'+
+    'সর্বশেষ সংরক্ষিত খসড়া: <b style="display:inline">'+esc(who)+'</b> — '+esc(toBn(when.toLocaleString('bn-BD')))+
+    '<div class="acts"><button class="btn btn-p" type="button" id="drRestore">'+ic('check','ic-s')+'পুনরুদ্ধার করুন</button>'+
+    '<button class="btn btn-s" type="button" id="drDrop">'+ic('trash','ic-s')+'খসড়া মুছুন</button></div></div></div>';
+  $('#drRestore').addEventListener('click', ()=>{
+    FKEYS.forEach(k=>setVal(k, d[k]));
+    setType(d.instType||'', true); refreshDatalists(); setLocalityLabel();
+    box.innerHTML='';
+    toast({kind:'ok', title:'খসড়া পুনরুদ্ধার হয়েছে', msg:'আপনি যেখানে থেমেছিলেন সেখান থেকে চালিয়ে যান।'});
+    go('entry'); const t = firstEmptyField(); if(t) t.focus();
+  });
+  $('#drDrop').addEventListener('click', async ()=>{
+    const ok = await confirmBox({title:'খসড়া মুছে ফেলবেন?', heading:'নিশ্চিত করুন', message:'সংরক্ষিত খসড়াটি স্থায়ীভাবে মুছে যাবে।', okLabel:'মুছে ফেলুন', danger:true});
+    if(!ok) return;
+    await Store.metaDel('draft'); box.innerHTML='';
+    toast({kind:'in', title:'খসড়া মুছে ফেলা হয়েছে'});
+  });
+}
+
+/* -------------------------- 11. Save / Edit / Delete -------------------------- */
+let saving = false;
+async function doSave(mode){
+  if(saving) return;
+  const data = collectForm();
+  const v = validate(data);
+  if(!v.ok){
+    showErrors(v.errors);
+    const firstKey = FKEYS.find(k=>v.errors[k]);
+    focusField(firstKey);
+    toast({kind:'er', title:'তথ্য সংশোধন করুন', msg: v.errors[firstKey]});
+    return;
+  }
+  clearAllErr();
+  const dups = findDuplicates(data, state.editingId);
+  if(dups.length){
+    showDupBanner(dups);
+    const errs = {}; dups.forEach(d=>errs[d.field]=d.msg);
+    showErrors(errs);
+    focusField(dups[0].field);
+    toast({kind:'er', title:'ডুপ্লিকেট তথ্য', msg:dups[0].msg, duration:5000});
+    return;
+  }
+  showDupBanner([]);
+  saving = true;
+  try{
+    if(state.editingId){
+      const idx = state.records.findIndex(r=>r.id===state.editingId);
+      const old = idx>=0 ? state.records[idx] : null;
+      const rec = Object.assign({}, old, data, {id: state.editingId, updatedAt: nowIso(), createdAt: old ? old.createdAt : nowIso()});
+      rec.searchBlob = buildBlob(rec);
+      await Store.put(rec);
+      if(idx>=0) state.records[idx] = rec; else state.records.push(rec);
+      exitEditMode(true);
+      afterDataChange();
+      toast({kind:'ok', title:'তথ্য হালনাগাদ হয়েছে', msg: rec.nameBn+' — '+rec.designation});
+      go('bene');
+    } else {
+      const rec = Object.assign({}, data, {id: uid(), createdAt: nowIso(), updatedAt: nowIso()});
+      rec.searchBlob = buildBlob(rec);
+      await Store.put(rec);
+      state.records.push(rec);
+      await Store.metaDel('draft'); $('#draftBanner').innerHTML='';
+      const effective = mode==='default' ? (state.retainInstitution ? 'same' : 'new') : mode;
+      resetForm(effective==='same');
+      afterDataChange();
+      toast({
+        kind:'ok', title:'সংরক্ষণ সম্পন্ন হয়েছে',
+        msg: rec.nameBn+' ('+rec.designation+') — '+rec.instName,
+        actions: effective==='same' ? [
+          {label:'নতুন প্রতিষ্ঠান শুরু করুন', onClick:()=>{ resetForm(false); focusField('instType'); }}
+        ] : [
+          {label:'এই প্রতিষ্ঠানে আরেকজন যোগ করুন', onClick:()=>{ retainFrom(rec); }}
+        ]
+      });
+      if(effective==='same'){ const el=$('#f_nameBn'); if(el && !isMobile()) el.focus(); }
+      else { const el=$('[data-radio="instType"][aria-checked="true"]')||$('#f_instName'); if(el && !isMobile()) el.focus(); }
+    }
+  }catch(err){
+    toast({kind:'er', title:'সংরক্ষণ ব্যর্থ হয়েছে', msg:'অনুগ্রহ করে আবার চেষ্টা করুন।', duration:6000});
+  } finally {
+    saving = false;
+  }
+}
+function retainFrom(rec){
+  resetForm(false);
+  setType(rec.instType, true);
+  setVal('instName', rec.instName);
+  setVal('union', rec.union);
+  setVal('locality', rec.locality);
+  setLocalityLabel(); refreshDatalists();
+  go('entry');
+  const el = $('#f_nameBn'); if(el) el.focus();
+}
+function resetForm(keepInstitution){
+  const keep = keepInstitution ? {instType:currentType, instName:getVal('instName'), union:getVal('union'), locality:getVal('locality')} : null;
+  ['instName','locality','nameBn','nameEn','address','nid','dob','fatherName','bankAccount','bankBranch','routing','mobile'].forEach(k=>setVal(k,''));
+  $('#f_union').value=''; $('#f_gender').value=''; $('#f_designation').value='';
+  if(keep){ setType(keep.instType, true); setVal('instName', keep.instName); setVal('union', keep.union); setVal('locality', keep.locality); }
+  else setType('', true);
+  setLocalityLabel(); clearAllErr(); showDupBanner([]); refreshDatalists();
+}
+function buildBlob(r){
+  return [r.instName, r.nameBn, r.nameEn, r.fatherName, r.mobile, r.nid, r.bankAccount, r.bankBranch, r.routing, r.union, r.locality, r.designation, r.address, r.instType, r.gender]
+    .join(' ').toLowerCase();
+}
+function enterEditMode(id){
+  const r = state.records.find(x=>x.id===id);
+  if(!r) return;
+  state.editingId = id;
+  FKEYS.forEach(k=>setVal(k, r[k]));
+  setType(r.instType, true); setLocalityLabel(); refreshDatalists(); clearAllErr(); showDupBanner([]);
+  $('#formTitle').textContent = 'সম্মানিভোগীর তথ্য সম্পাদনা';
+  $('#btnSaveMain').innerHTML = ic('check')+'<span>আপডেট করুন</span> <kbd>Enter</kbd>';
+
+  $$('[data-save="same"],[data-save="new"]').forEach(b=>b.style.display='none');
+  $('#editBanner').innerHTML =
+    '<div class="banner ed">'+ic('edit')+'<div class="bx"><b>সম্পাদনা মোড</b>'+esc(r.nameBn)+' — '+esc(r.designation)+', '+esc(r.instName)+
+    '<div class="acts"><button class="btn btn-s" type="button" id="edCancel">'+ic('x','ic-s')+'সম্পাদনা বাতিল করুন</button></div></div></div>';
+  $('#edCancel').addEventListener('click', ()=>{ exitEditMode(); toast({kind:'in', title:'সম্পাদনা বাতিল করা হয়েছে'}); });
+  go('entry');
+  const el = $('#f_nameBn'); if(el && !isMobile()) el.focus();
+}
+function exitEditMode(silent){
+  state.editingId = null;
+  $('#formTitle').textContent = 'নতুন সম্মানিভোগী এন্ট্রি';
+  $('#btnSaveMain').innerHTML = ic('save')+   $('#btnSaveMain').innerHTML = ic('save')+'<span>সংরক্ষণ করুন</span> <kbd>Enter</kbd>';
+
+  $$('[data-save="same"],[data-save="new"]').forEach(b=>b.style.display='');
+  $('#editBanner').innerHTML = '';
+  if(!silent){ resetForm(false); clearAllErr(); showDupBanner([]); }
+}
+function bindSaveButtons(){
+
+  $$('[data-save]').forEach(b=>b.addEventListener('click', ()=>doSave(b.dataset.save)));
+  $('#btnClearForm').addEventListener('click', async ()=>{
+    if(isFormEmpty()) { toast({kind:'in', title:'ফর্ম ইতিমধ্যেই খালি রয়েছে'}); return; }
+    const ok = await confirmBox({title:'ফর্ম খালি করবেন?', heading:'নিশ্চিত করুন', message:'ফর্মে লেখা তথ্যগুলো মুছে যাবে। সংরক্ষিত রেকর্ড অপরিবর্তিত থাকবে।', okLabel:'খালি করুন', danger:true});
+    if(!ok) return;
+    if(state.editingId) exitEditMode();
+    resetForm(false); await Store.metaDel('draft'); $('#draftBanner').innerHTML='';
+    toast({kind:'in', title:'ফর্ম খালি করা হয়েছে'});
+    focusField('instType');
+  });
+}
+async function deleteRecord(id){
+  const r = state.records.find(x=>x.id===id);
+  if(!r) return;
+  const ok = await confirmBox({
+    title:'তথ্য মুছে ফেলবেন?', danger:true, okLabel:'মুছে ফেলুন',
+    heading: r.nameBn+' — '+r.designation,
+    message: r.instName+', '+r.union+'। এই সম্মানিভোগীর তথ্য তালিকা থেকে মুছে যাবে।'
+  });
+  if(!ok) return;
+  await Store.del(id);
+  state.records = state.records.filter(x=>x.id!==id);
+  state.lastDeleted = r;
+  if(state.editingId===id) exitEditMode();
+  afterDataChange();
+  toast({
+    kind:'wr', title:'তথ্য মুছে ফেলা হয়েছে', msg:r.nameBn+' — '+r.designation, duration:8000,
+    actions:[{label:'Undo Delete', onClick: async ()=>{
+      if(!state.lastDeleted) return;
+      const rec = state.lastDeleted; state.lastDeleted = null;
+      await Store.put(rec); state.records.push(rec); afterDataChange();
+      toast({kind:'ok', title:'তথ্য পুনরুদ্ধার করা হয়েছে', msg:rec.nameBn});
+    }}]
+  });
+}
+function afterDataChange(){
+  refreshDatalists();
+  if(state.tab==='dash') renderDashboard(false);
+  if(state.tab==='bene') renderList();
+}
+
+/* -------------------------- 12. Statistics + Dashboard -------------------------- */
+function instKey(r){ return r.instType+'|'+r.union+'|'+keyNorm(r.instName); }
+function computeStats(){
+  const s = {
+    mosque:0, temple:0, inst:0, total:state.records.length, male:0, female:0,
+    desig:{'ইমাম':0,'মুয়াজ্জিন':0,'খাদেম':0,'পুরোহিত':0,'সেবাইত':0}
+  };
+  const seen = new Set();
+  for(const r of state.records){
+    const k = instKey(r);
+    if(!seen.has(k)){ seen.add(k); if(r.instType==='মসজিদ') s.mosque++; else if(r.instType==='মন্দির') s.temple++; }
+    if(r.gender==='পুরুষ') s.male++; else if(r.gender==='মহিলা') s.female++;
+    if(r.designation in s.desig) s.desig[r.designation]++;
+  }
+  s.inst = seen.size;
+  return s;
+}
+function animateCount(el, to, animate){
+  if(!el) return;
+  if(!animate || to===0){ el.textContent = toBn(to); return; }
+  const dur=750, t0=performance.now();
+  function step(t){
+    const p = Math.min(1,(t-t0)/dur), e = 1-Math.pow(1-p,3);
+    el.textContent = toBn(Math.round(to*e));
+    if(p<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+function renderDashboard(animate){
+  const s = computeStats();
+  const doAnim = animate && !state.dashDrawn;
+  $('#mqStats').innerHTML = ['ইমাম','মুয়াজ্জিন','খাদেম'].map(d=>
+    '<div class="stat-row"><div class="l">'+ic(DESIG_ICON[d])+'<span>মোট '+esc(d)+'</span></div><div class="n" data-count="d-'+esc(d)+'">০</div></div>').join('');
+  $('#tpStats').innerHTML = ['পুরোহিত','সেবাইত'].map(d=>
+    '<div class="stat-row tm"><div class="l">'+ic(DESIG_ICON[d])+'<span>মোট '+esc(d)+'</span></div><div class="n" data-count="d-'+esc(d)+'">০</div></div>').join('');
+  animateCount($('[data-count="mosque"]'), s.mosque, doAnim);
+  animateCount($('[data-count="temple"]'), s.temple, doAnim);
+  animateCount($('[data-count="inst"]'), s.inst, animate);
+  animateCount($('[data-count="total"]'), s.total, doAnim);
+  animateCount($('[data-count="male"]'), s.male, doAnim);
+  animateCount($('[data-count="female"]'), s.female, doAnim);
+  Object.keys(s.desig).forEach(d=>animateCount($('[data-count="d-'+d+'"]'), s.desig[d], doAnim));
+  state.dashDrawn = true;
+}
+
+/* -------------------------- 13. Search / Filter / List -------------------------- */
+function matchesFilters(r){
+  const f = state.filters;
+  if(f.areas.length && f.areas.indexOf(r.union)<0) return false;
+  if(f.types.length && f.types.indexOf(r.instType)<0) return false;
+  if(f.designations.length && f.designations.indexOf(r.designation)<0) return false;
+  if(f.genders.length && f.genders.indexOf(r.gender)<0) return false;
+  return true;
+}
+function matchesQuery(r, terms){
+  if(!terms.length) return true;
+  const blob = r.searchBlob || buildBlob(r);
+  return terms.every(t=>blob.indexOf(t)>=0);
+}
+function filteredRecords(){
+  const terms = toEnDigits(cleanText(state.query)).toLowerCase().split(' ').filter(Boolean);
+  return state.records.filter(r=>matchesFilters(r) && matchesQuery(r, terms));
+}
+const AREA_ORDER = {}; ALL_AREAS.forEach((a,i)=>AREA_ORDER[a]=i);
+const DESIG_ORDER = {}; ALL_DESIGNATIONS.forEach((d,i)=>DESIG_ORDER[d]=i);
+function groupInstitutions(recs){
+  const map = new Map();
+  for(const r of recs){
+    const k = instKey(r);
+    if(!map.has(k)) map.set(k, {key:k, instType:r.instType, instName:r.instName, union:r.union, locality:r.locality, items:[]});
+    map.get(k).items.push(r);
+  }
+  const list = Array.from(map.values());
+  list.forEach(g=>g.items.sort((a,b)=>(DESIG_ORDER[a.designation]-DESIG_ORDER[b.designation]) || a.nameBn.localeCompare(b.nameBn,'bn')));
+  list.sort((a,b)=>(AREA_ORDER[a.union]-AREA_ORDER[b.union]) || a.instName.localeCompare(b.instName,'bn'));
+  return list;
+}
+function renderList(){
+  const recs = filteredRecords();
+  const groups = groupInstitutions(recs);
+  const totalPages = Math.max(1, Math.ceil(groups.length/PAGE_SIZE));
+  if(state.page>totalPages) state.page = totalPages;
+  const pageItems = groups.slice((state.page-1)*PAGE_SIZE, state.page*PAGE_SIZE);
+  const box = $('#instList'), meta = $('#listMeta'), pager = $('#pager');
+  renderActiveFilters();
+  updateFilterBadge();
+
+  if(!state.records.length){
+    meta.innerHTML=''; pager.innerHTML='';
+    box.innerHTML = '<div class="empty card"><div class="eic">'+ic('db','ic-xl')+'</div><h3>এখনও কোনো তথ্য এন্ট্রি করা হয়নি।</h3><p>নতুন সম্মানিভোগীর তথ্য যোগ করে শুরু করুন।</p><button class="btn btn-p" type="button" id="emptyGo">'+ic('entry')+'তথ্য এন্ট্রি শুরু করুন</button></div>';
+    $('#emptyGo').addEventListener('click', ()=>go('entry'));
+    return;
+  }
+  if(!groups.length){
+    meta.innerHTML=''; pager.innerHTML='';
+    box.innerHTML = '<div class="empty card"><div class="eic">'+ic('search','ic-xl')+'</div><h3>আপনার অনুসন্ধানের সঙ্গে মিলে কোনো তথ্য পাওয়া যায়নি।</h3><p>অনুসন্ধান বা ফিল্টার পরিবর্তন করে আবার চেষ্টা করুন।</p><button class="btn btn-s" type="button" id="emptyReset">'+ic('eraser')+'অনুসন্ধান ও ফিল্টার মুছুন</button></div>';
+    $('#emptyReset').addEventListener('click', ()=>{ state.query=''; $('#searchInput').value=''; state.filters={areas:[],types:[],designations:[],genders:[]}; state.page=1; renderList(); });
+    return;
+  }
+  meta.innerHTML = '<span>'+ic('building','ic-s')+' প্রতিষ্ঠান: <b class="en">'+toBn(groups.length)+'</b></span><span>'+ic('people','ic-s')+' সম্মানিভোগী: <b class="en">'+toBn(recs.length)+'</b></span>';
+  box.innerHTML = pageItems.map(g=>{
+    const cls = g.instType==='মসজিদ' ? 'm':'t';
+    const tIcon = g.instType==='মসজিদ' ? 'mosque':'temple';
+    const locLabel = g.union===POURA ? 'ওয়ার্ড নং' : 'গ্রাম';
+    return '<article class="inst '+cls+'" data-key="'+esc(g.key)+'">'+
+      '<div class="ih"><div class="un">'+ic('map','ic-s')+'<span>'+esc(g.union)+'</span></div>'+
+      '<div class="nm">'+ic(tIcon)+'<span>'+esc(g.instName)+'</span></div>'+
+      '<div class="loc">'+ic('village','ic-s')+'<span>'+esc(locLabel)+': '+esc(g.locality)+'</span></div></div>'+
+      '<div class="ib2">'+ g.items.map(r=>
+        '<div class="brow"><div class="bi2">'+ic(DESIG_ICON[r.designation]||'user','ic-s')+'</div>'+
+        '<div class="bd"><div class="dg">'+esc(r.designation)+'</div><div class="nn">'+esc(r.nameBn)+'</div></div>'+
+        '<div class="gx">'+esc(r.gender)+'</div></div>').join('') +'</div>'+
+      '<div class="if"><button type="button" data-act="details">'+ic('eye','ic-s')+'<span>বিস্তারিত দেখুন</span></button>'+
+      '<button type="button" data-act="edit">'+ic('edit','ic-s')+'<span>সম্পাদনা করুন</span></button></div></article>';
+  }).join('');
+
+  $$('#instList .inst').forEach(card=>{
+    const key = card.dataset.key;
+    $('[data-act="details"]', card).addEventListener('click', ()=>openDetails(key));
+    $('[data-act="edit"]', card).addEventListener('click', ()=>{
+      const g = groups.find(x=>x.key===key);
+      if(!g) return;
+      if(g.items.length===1) enterEditMode(g.items[0].id); else openDetails(key);
+    });
+  });
+  pager.innerHTML = totalPages>1
+    ? '<button type="button" id="pgPrev"'+(state.page===1?' disabled':'')+' aria-label="পূর্ববর্তী পৃষ্ঠা">'+ic('chevL','ic-s')+'</button>'+
+      '<span class="pi">পৃষ্ঠা '+toBn(state.page)+' / '+toBn(totalPages)+'</span>'+
+      '<button type="button" id="pgNext"'+(state.page===totalPages?' disabled':'')+' aria-label="পরবর্তী পৃষ্ঠা">'+ic('chevR','ic-s')+'</button>'
+    : '';
+  if(totalPages>1){
+    $('#pgPrev').addEventListener('click', ()=>{ state.page--; renderList(); window.scrollTo({top:0,behavior:'smooth'}); });
+    $('#pgNext').addEventListener('click', ()=>{ state.page++; renderList(); window.scrollTo({top:0,behavior:'smooth'}); });
+  }
+}
+const onSearch = debounce(function(){ state.query = $('#searchInput').value; state.page=1; renderList(); }, 130);
+$('#searchInput').addEventListener('input', onSearch);
+$('#searchInput').addEventListener('keydown', e=>{ if(e.key==='Enter') e.preventDefault(); if(e.key==='Escape'){ $('#searchInput').value=''; state.query=''; state.page=1; renderList(); } });
+$('#searchClear').addEventListener('click', ()=>{ $('#searchInput').value=''; state.query=''; state.page=1; renderList(); $('#searchInput').focus(); });
+
+/* ---- filter UI ---- */
+const FILTER_GROUPS = [
+  {key:'areas', title:'ইউনিয়ন/পৌরসভা', icon:'map', options:ALL_AREAS},
+  {key:'types', title:'প্রতিষ্ঠান', icon:'building', options:TYPES},
+  {key:'designations', title:'সম্মানিভোগীর ধরন', icon:'badge', options:ALL_DESIGNATIONS},
+  {key:'genders', title:'লিঙ্গ', icon:'gender', options:GENDERS}
+];
+function buildFilterUI(){
+  $('#filterBody').innerHTML = FILTER_GROUPS.map(g=>
+    '<div class="fgrp"><div class="t">'+ic(g.icon,'ic-s')+'<span>'+esc(g.title)+'</span></div><div class="checks">'+
+    g.options.map(o=>'<label class="chk"><input type="checkbox" data-fg="'+g.key+'" value="'+esc(o)+'"><span>'+esc(o)+'</span></label>').join('')+
+    '</div></div>').join('');
+
+  $$('#filterBody input[type=checkbox]').forEach(c=>c.addEventListener('change', ()=>c.closest('.chk').classList.toggle('on', c.checked)));
+  $('#btnFilter').addEventListener('click', ()=>{
+
+    $$('#filterBody input[type=checkbox]').forEach(c=>{
+      c.checked = state.filters[c.dataset.fg].indexOf(c.value)>=0;
+      c.closest('.chk').classList.toggle('on', c.checked);
+    });
+    openModal('ovlFilter');
+  });
+  $('#btnApplyFilter').addEventListener('click', ()=>{
+    const f = {areas:[],types:[],designations:[],genders:[]};
+
+    $$('#filterBody input[type=checkbox]:checked').forEach(c=>f[c.dataset.fg].push(c.value));
+    state.filters = f; state.page = 1;
+    closeModal('ovlFilter'); renderList();
+    const n = countFilters();
+    toast({kind:'in', title: n ? 'ফিল্টার প্রয়োগ করা হয়েছে' : 'ফিল্টার মুছে ফেলা হয়েছে', msg: n ? 'সক্রিয় ফিল্টার: '+toBn(n)+' টি' : ''});
+  });
+  $('#btnClearFilter').addEventListener('click', ()=>{
+
+    $$('#filterBody input[type=checkbox]').forEach(c=>{ c.checked=false; c.closest('.chk').classList.remove('on'); });
+    state.filters = {areas:[],types:[],designations:[],genders:[]}; state.page=1;
+    closeModal('ovlFilter'); renderList();
+    toast({kind:'in', title:'ফিল্টার মুছে ফেলা হয়েছে'});
+  });
+}
+function countFilters(){ return FILTER_GROUPS.reduce((n,g)=>n+state.filters[g.key].length, 0); }
+function updateFilterBadge(){
+  const n = countFilters(), b = $('#btnFilter');
+  b.classList.toggle('act', n>0); $('#fBadge').textContent = toBn(n);
+}
+function renderActiveFilters(){
+  const box = $('#activeFilters'), items = [];
+  FILTER_GROUPS.forEach(g=>state.filters[g.key].forEach(v=>items.push({g:g.key, v:v, icon:g.icon})));
+  if(!items.length){ box.innerHTML=''; return; }
+  box.innerHTML = items.map((x,i)=>'<span class="chip">'+ic(x.icon,'ic-s')+esc(x.v)+'<button type="button" data-rm="'+i+'" aria-label="ফিল্টার সরান">'+ic('x','ic-s')+'</button></span>').join('')+
+    '<button class="chip" type="button" id="rmAll" style="cursor:pointer">'+ic('eraser','ic-s')+'সব মুছুন</button>';
+
+  $$('[data-rm]', box).forEach(b=>b.addEventListener('click', ()=>{
+    const x = items[+b.dataset.rm];
+    state.filters[x.g] = state.filters[x.g].filter(v=>v!==x.v);
+    state.page=1; renderList();
+  }));
+  $('#rmAll').addEventListener('click', ()=>{ state.filters={areas:[],types:[],designations:[],genders:[]}; state.page=1; renderList(); });
+}
+
+/* -------------------------- 14. Details modal -------------------------- */
+function detailRows(r){
+  const rows = [
+    ['pin','জেলা', r.district], ['office','উপজেলা', r.upazila],
+    ['map','ইউনিয়ন/পৌরসভা', r.union],
+    ['village', r.union===POURA?'পৌরসভার ওয়ার্ড নং':'গ্রাম', r.locality],
+    ['user','নাম (বাংলা)', r.nameBn], ['userEn','নাম (ইংরেজি)', r.nameEn, true],
+    ['gender','লিঙ্গ', r.gender], ['badge','পদবী', r.designation],
+    ['home','স্থায়ী ঠিকানা', r.address],
+    ['idcard','জাতীয় পরিচয়পত্র নম্বর', r.nid, true],
+    ['calendar','জন্ম তারিখ', r.dob, true],
+    ['family','পিতার নাম', r.fatherName],
+    ['bank','ব্যাংক একাউন্ট নম্বর', r.bankAccount, true],
+    ['branch','ব্যাংক ও শাখার নাম', r.bankBranch, true],
+    ['hash','রাউটিং নম্বর', r.routing, true],
+    ['phone','মোবাইল নম্বর', r.mobile, true]
+  ];
+  return '<div class="dl">'+rows.map(x=>'<div class="r"><div class="k">'+ic(x[0],'ic-s')+'<span>'+esc(x[1])+'</span></div><div class="v'+(x[3]?' mono':'')+'">'+esc(x[2]||'—')+'</div></div>').join('')+'</div>';
+}
+function openDetails(key){
+  const items = state.records.filter(r=>instKey(r)===key);
+  if(!items.length){ toast({kind:'er', title:'তথ্য পাওয়া যায়নি'}); return; }
+  items.sort((a,b)=>DESIG_ORDER[a.designation]-DESIG_ORDER[b.designation]);
+  const g = items[0];
+  $('#detailsBody').innerHTML =
+    '<div class="dtl-h">'+ic(g.instType==='মসজিদ'?'mosque':'temple','ic-l')+
+    '<div><div class="n">'+esc(g.instName)+'</div><small>'+esc(g.union)+' • '+esc(g.union===POURA?'ওয়ার্ড নং ':'গ্রাম: ')+esc(g.locality)+' • '+esc(g.instType)+'</small></div></div>'+
+    items.map(r=>
+      '<div class="pcard" data-id="'+esc(r.id)+'"><div class="ph"><div class="bi2">'+ic(DESIG_ICON[r.designation]||'user','ic-s')+'</div>'+
+      '<div><div class="nn">'+esc(r.nameBn)+'</div><div class="dg">'+esc(r.designation)+' • '+esc(r.gender)+'</div></div></div>'+
+      detailRows(r)+
+      '<div class="pa"><button class="btn btn-s" type="button" data-act="edit">'+ic('edit','ic-s')+'সম্পাদনা করুন</button>'+
+      '<button class="btn btn-d" type="button" data-act="del">'+ic('trash','ic-s')+'মুছে ফেলুন</button></div>'+
+      '<div class="exp-note">'+ic('info','ic-s')+'<span>সংরক্ষণ: '+esc(toBn(new Date(r.createdAt).toLocaleString('bn-BD')))+' • হালনাগাদ: '+esc(toBn(new Date(r.updatedAt).toLocaleString('bn-BD')))+'</span></div></div>').join('');
+
+  $$('#detailsBody .pcard').forEach(c=>{
+    const id = c.dataset.id;
+    $('[data-act="edit"]', c).addEventListener('click', ()=>{ closeModal('ovlDetails'); enterEditMode(id); });
+    $('[data-act="del"]', c).addEventListener('click', async ()=>{ closeModal('ovlDetails'); await deleteRecord(id); });
+  });
+  openModal('ovlDetails');
+}
+function openDetailsForRecord(id){
+  const r = state.records.find(x=>x.id===id);
+  if(r) openDetails(instKey(r));
+}
+
+/* -------------------------- 15. ZIP writer (store, for xlsx/docx) -------------------------- */
+const CRC_TABLE = (function(){
+  const t = new Uint32Array(256);
+  for(let n=0;n<256;n++){ let c=n; for(let k=0;k<8;k++) c = (c&1) ? (0xEDB88320 ^ (c>>>1)) : (c>>>1); t[n]=c>>>0; }
+  return t;
+})();
+function crc32(buf){
+  let c = 0xFFFFFFFF;
+  for(let i=0;i<buf.length;i++) c = CRC_TABLE[(c ^ buf[i]) & 0xFF] ^ (c>>>8);
+  return (c ^ 0xFFFFFFFF)>>>0;
+}
+function zipBlob(files, mime){
+  const enc = new TextEncoder(), chunks=[], central=[];
+  let offset = 0;
+  files.forEach(f=>{
+    const name = enc.encode(f.name);
+    const data = typeof f.data==='string' ? enc.encode(f.data) : f.data;
+    const crc = crc32(data);
+    const lh = new DataView(new ArrayBuffer(30));
+    lh.setUint32(0,0x04034b50,true); lh.setUint16(4,20,true); lh.setUint16(6,0x0800,true);
+    lh.setUint16(8,0,true); lh.setUint16(10,0,true); lh.setUint16(12,0,true);
+    lh.setUint32(14,crc,true); lh.setUint32(18,data.length,true); lh.setUint32(22,data.length,true);
+    lh.setUint16(26,name.length,true); lh.setUint16(28,0,true);
+    chunks.push(new Uint8Array(lh.buffer), name, data);
+    const ch = new DataView(new ArrayBuffer(46));
+    ch.setUint32(0,0x02014b50,true); ch.setUint16(4,20,true); ch.setUint16(6,20,true);
+    ch.setUint16(8,0x0800,true); ch.setUint16(10,0,true); ch.setUint16(12,0,true); ch.setUint16(14,0,true);
+    ch.setUint32(16,crc,true); ch.setUint32(20,data.length,true); ch.setUint32(24,data.length,true);
+    ch.setUint16(28,name.length,true); ch.setUint16(30,0,true); ch.setUint16(32,0,true);
+    ch.setUint16(34,0,true); ch.setUint16(36,0,true); ch.setUint32(38,0,true); ch.setUint32(42,offset,true);
+    central.push(new Uint8Array(ch.buffer), name);
+    offset += 30 + name.length + data.length;
+  });
+  let cdSize = 0; central.forEach(c=>cdSize += c.length);
+  const eo = new DataView(new ArrayBuffer(22));
+  eo.setUint32(0,0x06054b50,true); eo.setUint16(4,0,true); eo.setUint16(6,0,true);
+  eo.setUint16(8,files.length,true); eo.setUint16(10,files.length,true);
+  eo.setUint32(12,cdSize,true); eo.setUint32(16,offset,true); eo.setUint16(20,0,true);
+  return new Blob(chunks.concat(central, [new Uint8Array(eo.buffer)]), {type:mime});
+}
+function download(blob, filename){
+  return new Promise((resolve,reject)=>{
+    try{
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = filename; a.rel='noopener'; a.style.display='none';
+      document.body.appendChild(a); a.click();
+      setTimeout(()=>{ a.remove(); URL.revokeObjectURL(url); resolve(true); }, 1200);
+    }catch(e){ reject(e); }
+  });
+}
+function stamp(){ const d=new Date(); return d.getFullYear()+pad2(d.getMonth()+1)+pad2(d.getDate())+'-'+pad2(d.getHours())+pad2(d.getMinutes()); }
+
+/* -------------------------- 16. Export builders -------------------------- */
+function sortedForExport(){
+  return state.records.slice().sort((a,b)=>
+    (AREA_ORDER[a.union]-AREA_ORDER[b.union]) ||
+    (a.instType===b.instType?0:(a.instType==='মসজিদ'?-1:1)) ||
+    a.instName.localeCompare(b.instName,'bn') ||
+    (DESIG_ORDER[a.designation]-DESIG_ORDER[b.designation]) ||
+    (a.createdAt<b.createdAt?-1:1));
+}
+function exportMatrix(){
+  return sortedForExport().map((r,i)=>[
+    pad2(i+1), r.district, r.upazila, r.instType, r.instName, r.cityWard||'', r.union, r.locality,
+    r.nameBn, r.nameEn, r.gender, r.designation, r.address, r.nid, r.dob, r.fatherName,
+    r.bankAccount, r.bankBranch, r.routing, r.mobile
+  ].map(v=>v==null?'':String(v)));
+}
+function validateExport(rows){
+  if(!rows.length) return 'রপ্তানির জন্য কোনো তথ্য নেই।';
+  const bad = rows.findIndex(r=>r.length!==EXPORT_HEADERS.length);
+  if(bad>=0) return 'কলাম সংখ্যায় অসঙ্গতি পাওয়া গেছে (সারি '+toBn(bad+1)+')।';
+  return null;
+}
+/* CSV */
+function buildCsv(rows){
+  const q = v=>'"'+String(v).replace(/"/g,'""')+'"';
+  const lines = [EXPORT_HEADERS.map(q).join(',')].concat(rows.map(r=>r.map(q).join(',')));
+  return new Blob(['\uFEFF'+lines.join('\r\n')+'\r\n'], {type:'text/csv;charset=utf-8'});
+}
+/* JSON */
+function buildJson(){
+  const groups = groupInstitutions(sortedForExport());
+  let serial = 0;
+  const payload = {
+    meta:{ application:'Beneficiary Data Management System', poweredBy:'NI Studio Pro', exportedAt: nowIso(),
+      district:DISTRICT, upazila:UPAZILA, totalInstitutions:groups.length, totalBeneficiaries:state.records.length,
+      columnOrder:EXPORT_HEADERS },
+    institutions: groups.map(g=>({
+      institutionType:g.instType, institutionName:g.instName, district:DISTRICT, upazila:UPAZILA,
+      cityCorporationWard:'', unionOrMunicipality:g.union, villageOrWard:g.locality,
+      beneficiaries: g.items.map(r=>({
+        serial: pad2(++serial), nameBn:r.nameBn, nameEn:r.nameEn, gender:r.gender, designation:r.designation,
+        permanentAddress:r.address, nid:r.nid, dateOfBirth:r.dob, fatherName:r.fatherName,
+        bankAccountNumber:r.bankAccount, bankAndBranch:r.bankBranch, routingNumber:r.routing, mobile:r.mobile,
+        createdAt:r.createdAt, updatedAt:r.updatedAt
+      }))
+    }))
+  };
+  return new Blob([JSON.stringify(payload,null,2)], {type:'application/json;charset=utf-8'});
+}
+/* Excel (.xlsx) */
+function colLetter(n){ let s=''; n++; while(n>0){ const m=(n-1)%26; s=String.fromCharCode(65+m)+s; n=(n-1-m)/26; } return s; }
+function buildXlsx(rows){
+  const cell = (c,r,val,style)=>'<c r="'+colLetter(c)+r+'" t="inlineStr" s="'+style+'"><is><t xml:space="preserve">'+xesc(val)+'</t></is></c>';
+  let sheet = '';
+  sheet += '<row r="1" ht="34" customHeight="1">'+EXPORT_HEADERS.map((h,i)=>cell(i,1,h,1)).join('')+'</row>';
+  rows.forEach((r,ri)=>{ sheet += '<row r="'+(ri+2)+'">'+r.map((v,i)=>cell(i,ri+2,v,2)).join('')+'</row>'; });
+  const cols = XLS_COL_WIDTH.map((w,i)=>'<col min="'+(i+1)+'" max="'+(i+1)+'" width="'+w+'" customWidth="1" style="2"/>').join('');
+  const lastRef = colLetter(EXPORT_HEADERS.length-1)+(rows.length+1);
+  const sheetXml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+    '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'+
+    '<sheetPr><pageSetUpPr fitToPage="1"/></sheetPr><dimension ref="A1:'+lastRef+'"/>'+
+    '<sheetViews><sheetView tabSelected="1" workbookViewId="0"><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews>'+
+    '<sheetFormatPr defaultRowHeight="16"/><cols>'+cols+'</cols><sheetData>'+sheet+'</sheetData>'+
+    '<autoFilter ref="A1:'+colLetter(EXPORT_HEADERS.length-1)+'1"/>'+
+    '<pageMargins left="0.25" right="0.25" top="0.35" bottom="0.35" header="0.3" footer="0.3"/>'+
+    '<pageSetup paperSize="5" orientation="landscape" fitToWidth="1" fitToHeight="0"/></worksheet>';
+  const styles = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+    '<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'+
+    '<fonts count="2"><font><sz val="11"/><name val="Nirmala UI"/></font><font><b/><sz val="11"/><name val="Nirmala UI"/></font></fonts>'+
+    '<fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill>'+
+    '<fill><patternFill patternType="solid"><fgColor rgb="FFD1FAE5"/><bgColor indexed="64"/></patternFill></fill></fills>'+
+    '<borders count="2"><border/><border><left style="thin"><color rgb="FF9AA5A0"/></left><right style="thin"><color rgb="FF9AA5A0"/></right>'+
+    '<top style="thin"><color rgb="FF9AA5A0"/></top><bottom style="thin"><color rgb="FF9AA5A0"/></bottom></border></borders>'+
+    '<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>'+
+    '<cellXfs count="3"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>'+
+    '<xf numFmtId="49" fontId="1" fillId="2" borderId="1" xfId="0" applyNumberFormat="1" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf>'+
+    '<xf numFmtId="49" fontId="0" fillId="0" borderId="1" xfId="0" applyNumberFormat="1" applyBorder="1" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf></cellXfs>'+
+    '<cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>';
+  const files = [
+    {name:'[Content_Types].xml', data:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+      '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'+
+      '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'+
+      '<Default Extension="xml" ContentType="application/xml"/>'+
+      '<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>'+
+      '<Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>'+
+      '<Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>'},
+    {name:'_rels/.rels', data:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+      '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+
+      '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>'},
+    {name:'xl/workbook.xml', data:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+      '<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'+
+      '<sheets><sheet name="সম্মানিভোগী তালিকা" sheetId="1" r:id="rId1"/></sheets></workbook>'},
+    {name:'xl/_rels/workbook.xml.rels', data:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+      '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+
+      '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/>'+
+      '<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>'},
+    {name:'xl/styles.xml', data:styles},
+    {name:'xl/worksheets/sheet1.xml', data:sheetXml}
+  ];
+  return zipBlob(files, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+}
+/* Word (.docx) — WORD_CONFIG = single source of truth */
+function buildDocx(rows){
+  const W = WORD_CONFIG, fz = W.fontHalfPt;
+  const rpr = '<w:rPr><w:rFonts w:ascii="'+xesc(W.fontName)+'" w:hAnsi="'+xesc(W.fontName)+'" w:cs="'+xesc(W.fontName)+'"/><w:sz w:val="'+fz+'"/><w:szCs w:val="'+fz+'"/><w:color w:val="000000"/></w:rPr>';
+  const rprB = '<w:rPr><w:rFonts w:ascii="'+xesc(W.fontName)+'" w:hAnsi="'+xesc(W.fontName)+'" w:cs="'+xesc(W.fontName)+'"/><w:b/><w:bCs/><w:sz w:val="'+fz+'"/><w:szCs w:val="'+fz+'"/><w:color w:val="000000"/></w:rPr>';
+  const para = (txt, bold, align)=>'<w:p><w:pPr><w:spacing w:before="0" w:after="0" w:line="240" w:lineRule="auto"/>'+
+    '<w:jc w:val="'+(align||'left')+'"/><w:rPr>'+(bold?'<w:b/>':'')+'<w:sz w:val="'+fz+'"/></w:rPr></w:pPr>'+
+    '<w:r>'+(bold?rprB:rpr)+'<w:t xml:space="preserve">'+xesc(txt)+'</w:t></w:r></w:p>';
+  const tc = (txt, w, bold, align)=>'<w:tc><w:tcPr><w:tcW w:w="'+w+'" w:type="dxa"/>'+
+    '<w:tcBorders><w:top w:val="single" w:sz="6" w:space="0" w:color="000000"/><w:left w:val="single" w:sz="6" w:space="0" w:color="000000"/>'+
+    '<w:bottom w:val="single" w:sz="6" w:space="0" w:color="000000"/><w:right w:val="single" w:sz="6" w:space="0" w:color="000000"/></w:tcBorders>'+
+    '<w:vAlign w:val="center"/></w:tcPr>'+para(txt, bold, align)+'</w:tc>';
+  const widths = W.colWidthsTw;
+  const headRow = '<w:tr><w:trPr>'+(W.repeatHeaderRow?'<w:tblHeader/>':'')+'<w:cantSplit/></w:trPr>'+
+    EXPORT_HEADERS.map((h,i)=>tc(h, widths[i], true, 'center')).join('')+'</w:tr>';
+  const bodyRows = rows.map(r=>'<w:tr><w:trPr><w:cantSplit/></w:trPr>'+
+    r.map((v,i)=>tc(v, widths[i], false, (i===0||i===10||i===14)?'center':'left')).join('')+'</w:tr>').join('');
+  const table = '<w:tbl><w:tblPr><w:tblStyle w:val="TableGrid"/><w:tblW w:w="0" w:type="auto"/>'+
+    '<w:tblBorders><w:top w:val="single" w:sz="6" w:space="0" w:color="000000"/><w:left w:val="single" w:sz="6" w:space="0" w:color="000000"/>'+
+    '<w:bottom w:val="single" w:sz="6" w:space="0" w:color="000000"/><w:right w:val="single" w:sz="6" w:space="0" w:color="000000"/>'+
+    '<w:insideH w:val="single" w:sz="6" w:space="0" w:color="000000"/><w:insideV w:val="single" w:sz="6" w:space="0" w:color="000000"/></w:tblBorders>'+
+    '<w:tblLayout w:type="fixed"/><w:tblCellMar><w:top w:w="20" w:type="dxa"/><w:left w:w="45" w:type="dxa"/>'+
+    '<w:bottom w:w="20" w:type="dxa"/><w:right w:w="45" w:type="dxa"/></w:tblCellMar></w:tblPr>'+
+    '<w:tblGrid>'+widths.map(w=>'<w:gridCol w:w="'+w+'"/>').join('')+'</w:tblGrid>'+headRow+bodyRows+'</w:tbl>';
+  const sect = '<w:sectPr><w:pgSz w:w="'+W.page.widthTw+'" w:h="'+W.page.heightTw+'" w:orient="'+W.page.orient+'"/>'+
+    '<w:pgMar w:top="'+W.margins.top+'" w:right="'+W.margins.right+'" w:bottom="'+W.margins.bottom+'" w:left="'+W.margins.left+'" w:header="284" w:footer="284" w:gutter="0"/>'+
+    '<w:cols w:space="708"/><w:docGrid w:linePitch="360"/></w:sectPr>';
+  const doc = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+    '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>'+
+    (W.includeTitle ? para(W.title, true, 'center')+para('', false, 'left') : '')+
+    table + para('') + sect + '</w:body></w:document>';
+  const styles = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+    '<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'+
+    '<w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="'+xesc(W.fontName)+'" w:hAnsi="'+xesc(W.fontName)+'" w:cs="'+xesc(W.fontName)+'"/>'+
+    '<w:sz w:val="'+fz+'"/><w:szCs w:val="'+fz+'"/></w:rPr></w:rPrDefault>'+
+    '<w:pPrDefault><w:pPr><w:spacing w:after="0" w:line="240" w:lineRule="auto"/></w:pPr></w:pPrDefault></w:docDefaults>'+
+    '<w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/></w:style>'+
+    '<w:style w:type="table" w:styleId="TableGrid"><w:name w:val="Table Grid"/><w:tblPr></w:tblPr></w:style></w:styles>';
+  const files = [
+    {name:'[Content_Types].xml', data:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+      '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'+
+      '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'+
+      '<Default Extension="xml" ContentType="application/xml"/>'+
+      '<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>'+
+      '<Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/></Types>'},
+    {name:'_rels/.rels', data:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+      '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+
+      '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>'},
+    {name:'word/_rels/document.xml.rels', data:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+      '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+
+      '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>'},
+    {name:'word/styles.xml', data:styles},
+    {name:'word/document.xml', data:doc}
+  ];
+  return zipBlob(files, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+}
+async function runExport(fmt){
+  const t = toast({kind:'in', title:'Exporting...', msg:'ফাইল প্রস্তুত করা হচ্ছে', spinner:true, duration:0});
+  try{
+    const rows = exportMatrix();
+    const bad = validateExport(rows);
+    if(bad){ t.close(); toast({kind:'er', title:'Export failed — Try Again', msg:bad, duration:6000}); return; }
+    await new Promise(r=>setTimeout(r,60));
+    const base = 'Sommanibhogi-Lohagara-Narail-'+stamp();
+    let blob, name;
+    if(fmt==='excel'){ blob = buildXlsx(rows); name = base+'.xlsx'; }
+    else if(fmt==='word'){ blob = buildDocx(rows); name = base+'.docx'; }
+    else if(fmt==='csv'){ blob = buildCsv(rows); name = base+'.csv'; }
+    else { blob = buildJson(); name = base+'.json'; }
+    if(!blob || !blob.size) throw new Error('empty');
+    await download(blob, name);
+    t.close();
+    toast({kind:'ok', title:'Data exported successfully', msg:name+' — '+toBn(rows.length)+' টি রেকর্ড', duration:5000});
+  }catch(e){
+    t.close();
+    toast({kind:'er', title:'Export failed — Try Again', msg:'ফাইল তৈরিতে সমস্যা হয়েছে। আবার চেষ্টা করুন।', duration:7000});
+  }
+}
+
+/* -------------------------- 17. Backup / Restore -------------------------- */
+async function runBackup(){
+  const t = toast({kind:'in', title:'ব্যাকআপ তৈরি হচ্ছে...', spinner:true, duration:0});
+  try{
+    const payload = { app:'NI Studio Pro — Beneficiary Data Management', schema:1, exportedAt:nowIso(),
+      district:DISTRICT, upazila:UPAZILA, count:state.records.length,
+      records: state.records.map(r=>{ const c=Object.assign({},r); delete c.searchBlob; return c; }) };
+    const blob = new Blob([JSON.stringify(payload,null,2)], {type:'application/json;charset=utf-8'});
+    await download(blob, 'Backup-Sommanibhogi-'+stamp()+'.json');
+    t.close(); toast({kind:'ok', title:'ব্যাকআপ সফল হয়েছে', msg:toBn(state.records.length)+' টি রেকর্ড সংরক্ষিত হয়েছে'});
+  }catch(e){ t.close(); toast({kind:'er', title:'ব্যাকআপ ব্যর্থ হয়েছে', msg:'আবার চেষ্টা করুন।'}); }
+}
+function normalizeRec(o){
+  const r = {
+    id: o.id || uid(), district:DISTRICT, upazila:UPAZILA, cityWard:'',
+    instType: TYPES.indexOf(o.instType)>=0 ? o.instType : 'মসজিদ',
+    instName: cleanText(o.instName), union: ALL_AREAS.indexOf(o.union)>=0 ? o.union : UNIONS[6],
+    locality: cleanText(o.locality), nameBn: cleanText(o.nameBn), nameEn: cleanText(o.nameEn),
+    gender: GENDERS.indexOf(o.gender)>=0 ? o.gender : 'পুরুষ',
+    designation: ALL_DESIGNATIONS.indexOf(o.designation)>=0 ? o.designation : (DESIGNATIONS[o.instType]||['ইমাম'])[0],
+    address: cleanText(o.address), nid: digitsOnly(o.nid), dob: cleanText(o.dob),
+    fatherName: cleanText(o.fatherName), bankAccount: digitsOnly(o.bankAccount),
+    bankBranch: cleanText(o.bankBranch), routing: digitsOnly(o.routing), mobile: digitsOnly(o.mobile),
+    createdAt: o.createdAt || nowIso(), updatedAt: o.updatedAt || o.createdAt || nowIso()
+  };
+  r.searchBlob = buildBlob(r);
+  return r;
+}
+$('#restoreFile').addEventListener('change', async function(){
+  const file = this.files && this.files[0];
+  this.value = '';
+  if(!file) return;
+  let parsed;
+  try{ parsed = JSON.parse(await file.text()); }
+  catch(e){ toast({kind:'er', title:'ফাইলটি পড়া যায়নি', msg:'বৈধ JSON ব্যাকআপ ফাইল নির্বাচন করুন।'}); return; }
+  const list = Array.isArray(parsed) ? parsed : (Array.isArray(parsed.records) ? parsed.records : null);
+  if(!list || !list.length){ toast({kind:'er', title:'ব্যাকআপে কোনো রেকর্ড পাওয়া যায়নি'}); return; }
+  const ok = await confirmBox({
+    title:'ডেটা পুনরুদ্ধার করবেন?', danger: state.records.length>0, okLabel:'পুনরুদ্ধার করুন',
+    heading: toBn(list.length)+' টি রেকর্ড পাওয়া গেছে',
+    message: state.records.length
+      ? 'সতর্কতা: বর্তমানে সংরক্ষিত '+toBn(state.records.length)+' টি রেকর্ড মুছে গিয়ে ব্যাকআপের তথ্য বসানো হবে। প্রয়োজনে আগে বর্তমান ডেটার ব্যাকআপ নিন।'
+      : 'ব্যাকআপের তথ্য অ্যাপে যোগ করা হবে।'
+  });
+  if(!ok) return;
+  const t = toast({kind:'in', title:'পুনরুদ্ধার চলছে...', spinner:true, duration:0});
+  try{
+    const recs = list.map(normalizeRec);
+    const seen = new Set(); const clean = [];
+    recs.forEach(r=>{ if(seen.has(r.id)) r.id = uid(); seen.add(r.id); clean.push(r); });
+    await Store.clear();
+    await Store.putMany(clean);
+    state.records = clean; state.page = 1; state.dashDrawn = false;
+    if(state.editingId) exitEditMode();
+    afterDataChange(); renderDashboard(true);
+    t.close(); closeModal('ovlSettings');
+    toast({kind:'ok', title:'ডেটা পুনরুদ্ধার সম্পন্ন', msg:toBn(clean.length)+' টি রেকর্ড সফলভাবে যোগ হয়েছে'});
+    go('dash');
+  }catch(e){ t.close(); toast({kind:'er', title:'পুনরুদ্ধার ব্যর্থ হয়েছে', msg:'আবার চেষ্টা করুন।'}); }
+});
+
+/* -------------------------- 18. Settings -------------------------- */
+function buildSettings(){
+  $('#settingsBody').innerHTML =
+    '<div class="set-block"><div class="t">'+ic('download','ic-s')+'<span>Export Data</span></div>'+
+    '<div class="d">সম্পূর্ণ তালিকা নির্ধারিত কলাম অনুসারে ডাউনলোড করুন।</div>'+
+    '<div class="fld"><label for="expFormat">'+ic('file','ic-s')+'ফাইলের ধরন নির্বাচন করুন</label>'+
+    '<div class="ctl"><select id="expFormat">'+
+    '<option value="excel">Excel (.xlsx)</option><option value="word">Word (.docx)</option>'+
+    '<option value="csv">CSV (.csv)</option><option value="json">JSON (.json)</option></select></div></div>'+
+    '<button class="btn btn-p btn-w" type="button" id="btnExport" style="margin-top:10px">'+ic('download')+'Export Data</button>'+
+    '<div class="exp-note">'+ic('info','ic-s')+'<span>ক্রম স্বয়ংক্রিয়ভাবে ০১, ০২, ০৩... আকারে যোগ হয়; NID, মোবাইল, একাউন্ট ও রাউটিং নম্বর টেক্সট হিসেবে সংরক্ষিত হয় যাতে শুরুর শূন্য ঠিক থাকে। Word: Legal, Landscape, ফন্ট সাইজ ৮, সাদা-কালো।</span></div></div>'+
+
+    '<div class="set-block"><div class="t">'+ic('db','ic-s')+'<span>Backup &amp; Restore</span></div>'+
+    '<div class="d">সমস্ত তথ্য JSON ব্যাকআপ হিসেবে সংরক্ষণ ও পুনরুদ্ধার করুন।</div>'+
+    '<div style="display:flex;gap:10px;flex-wrap:wrap">'+
+    '<button class="btn btn-s" type="button" id="btnBackup" style="flex:1 1 150px">'+ic('shield')+'Backup Data</button>'+
+    '<button class="btn btn-s" type="button" id="btnRestore" style="flex:1 1 150px">'+ic('upload')+'Restore Data</button></div></div>'+
+
+    '<div class="set-block"><div class="t">'+ic('spark','ic-s')+'<span>দ্রুত এন্ট্রি সেটিংস</span></div>'+
+    '<div class="d">এন্ট্রির গতি বাড়ানোর জন্য পছন্দ নির্ধারণ করুন।</div>'+
+    '<div class="sw" style="margin-bottom:9px"><div class="txt">একই প্রতিষ্ঠানের তথ্য ধরে রাখুন<small>সংরক্ষণের পরে প্রতিষ্ঠান, ইউনিয়ন ও গ্রাম অপরিবর্তিত থাকবে</small></div>'+
+    '<button class="tgl" type="button" id="tglRetain" role="switch" aria-checked="'+(state.retainInstitution?'true':'false')+'" aria-label="একই প্রতিষ্ঠান ধরে রাখুন"></button></div>'+
+    '<div class="sw"><div class="txt">স্বয়ংক্রিয় খসড়া সংরক্ষণ<small>অসম্পূর্ণ এন্ট্রি পুনরুদ্ধারযোগ্য থাকবে</small></div>'+
+    '<button class="tgl" type="button" id="tglDraft" role="switch" aria-checked="'+(state.autoDraft?'true':'false')+'" aria-label="স্বয়ংক্রিয় খসড়া সংরক্ষণ"></button></div></div>'+
+
+    '<div class="set-block"><div class="t">'+ic('keyboard','ic-s')+'<span>কীবোর্ড শর্টকাট (ডেস্কটপ)</span></div>'+
+    '<div class="shk">'+
+    [['Tab','পরবর্তী ফিল্ড'],['Shift + Tab','পূর্ববর্তী ফিল্ড'],['Enter','ডেটা সংরক্ষণ'],['Shift + Enter','সংরক্ষণ ও নতুন এন্ট্রি'],['Alt + 1 / 2 / 3','ড্যাশবোর্ড / এন্ট্রি / উপকারভোগী'],['Ctrl + F','অনুসন্ধান'],['Esc','মোডাল বন্ধ']]
+      .map(x=>'<div class="r"><span>'+esc(x[1])+'</span><kbd>'+esc(x[0])+'</kbd></div>').join('')+'</div></div>'+
+
+    '<div class="set-block"><div class="t">'+ic('info','ic-s')+'<span>সিস্টেম তথ্য</span></div>'+
+    '<div class="shk"><div class="r"><span>সংরক্ষিত রেকর্ড</span><b id="stRec" class="en"></b></div>'+
+    '<div class="r"><span>ডেটা স্টোরেজ</span><b class="en">'+esc(Store.mode())+'</b></div>'+
+    '<div class="r"><span>অফলাইন কার্যক্ষমতা</span><b>সক্রিয়</b></div></div></div>'+
+
+    '<div class="set-block" style="border-color:var(--danger-line)"><div class="t" style="color:var(--danger)">'+ic('trash','ic-s')+'<span>সমস্ত ডেটা মুছুন</span></div>'+
+    '<div class="d">এই কাজটি ফিরিয়ে আনা যাবে না। আগে অবশ্যই ব্যাকআপ নিন।</div>'+
+    '<button class="btn btn-d btn-w" type="button" id="btnWipe">'+ic('trash')+'সমস্ত ডেটা মুছে ফেলুন</button></div>'+
+
+    '<div class="pw">'+ic('spark','ic-s')+'<span class="gt">Powered by NI Studio Pro</span></div>';
+
+  $('#expFormat').value = state.exportFormat;
+  $('#expFormat').addEventListener('change', function(){ state.exportFormat=this.value; Prefs.set('exportFmt', this.value); });
+  $('#btnExport').addEventListener('click', ()=>runExport($('#expFormat').value));
+  $('#btnBackup').addEventListener('click', runBackup);
+  $('#btnRestore').addEventListener('click', ()=>$('#restoreFile').click());
+  const bindTgl = (id, key, prefKey)=>{
+    const b = document.getElementById(id);
+    b.addEventListener('click', ()=>{
+      state[key] = !state[key];
+      b.setAttribute('aria-checked', state[key]?'true':'false');
+      Prefs.set(prefKey, state[key]);
+      toast({kind:'in', title: state[key] ? 'চালু করা হয়েছে' : 'বন্ধ করা হয়েছে'});
+    });
+  };
+  bindTgl('tglRetain','retainInstitution','retain');
+  bindTgl('tglDraft','autoDraft','draft');
+  $('#btnWipe').addEventListener('click', async ()=>{
+    if(!state.records.length){ toast({kind:'in', title:'মুছে ফেলার জন্য কোনো ডেটা নেই'}); return; }
+    const ok = await confirmBox({title:'সমস্ত ডেটা মুছবেন?', danger:true, okLabel:'সব মুছে ফেলুন',
+      heading: toBn(state.records.length)+' টি রেকর্ড স্থায়ীভাবে মুছে যাবে',
+      message:'এই কাজটি ফিরিয়ে আনা সম্ভব নয়। নিশ্চিত হলে এগিয়ে যান।'});
+    if(!ok) return;
+    await Store.clear(); await Store.metaDel('draft');
+    state.records = []; state.page=1; state.dashDrawn=false;
+    if(state.editingId) exitEditMode();
+    $('#draftBanner').innerHTML='';
+    afterDataChange(); renderDashboard(false);
+    closeModal('ovlSettings');
+    toast({kind:'wr', title:'সমস্ত ডেটা মুছে ফেলা হয়েছে'});
+  });
+}
+$('#btnSettings').addEventListener('click', ()=>{
+  const el = $('#stRec'); if(el) el.textContent = toBn(state.records.length)+' টি';
+  const r = $('#tglRetain'), d = $('#tglDraft');
+  if(r) r.setAttribute('aria-checked', state.retainInstitution?'true':'false');
+  if(d) d.setAttribute('aria-checked', state.autoDraft?'true':'false');
+  openModal('ovlSettings');
+});
+
+/* -------------------------- 19. Global shortcuts -------------------------- */
+document.addEventListener('keydown', function(e){
+  if(e.key==='Escape'){
+    const open = $$('.ovl.on').pop();
+    if(open){ closeModal(open); return; }
+  }
+  if(e.altKey && !e.ctrlKey && !e.metaKey && ['1','2','3'].indexOf(e.key)>=0){
+    e.preventDefault(); go(TABS[+e.key-1].id); return;
+  }
+  if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='f'){
+    e.preventDefault(); go('bene'); const s=$('#searchInput'); if(s){ s.focus(); s.select(); } return;
+  }
+  if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='s'){
+    e.preventDefault(); if(state.tab==='entry') doSave('default'); return;
+  }
+});
+
+/* -------------------------- 20. Init -------------------------- */
+const HEADER_ICONS = [
+  ['hiDist','pin','ic'],['hiUpa','office','ic'],['icD1','pin','ic'],['icU1','office','ic'],
+  ['icUn1','map','ic'],['icPo1','building','ic'],['icMq','mosque','ic-l'],['icTp','temple','ic-l'],
+  ['icTot','building','ic'],['icBn','people','ic'],['icMale','user','ic-s'],['icFemale','user','ic-s'],
+  ['stLoc','pin','ic-s'],['stInst','building','ic-s'],['stMq','mosque','ic-s'],['stTp','temple','ic-s'],
+  ['stBn','people','ic-s'],['icForm','entry','ic']
+];
+(async function init(){
+  try{
+    paintIcons();
+    $('#brandMark').innerHTML = ic('crest','ic-l');
+    $('#btnSettings').innerHTML = ic('dots');
+    HEADER_ICONS.forEach(x=>{ const el=document.getElementById(x[0]); if(el) el.insertAdjacentHTML('afterbegin', ic(x[1], x[2])); });
+    buildNav(); fillStaticOptions(); addNextButtons(); bindNormalizers(); bindSaveButtons(); buildFilterUI(); buildSettings();
+    setType('', true); setLocalityLabel();
+
+    await Store.init();
+    const raw = await Store.all();
+    state.records = raw.map(normalizeRec);
+    refreshDatalists();
+    go('dash');
+    renderDashboard(true);
+    await checkDraft();
+    if(state.records.length){
+      toast({kind:'in', title:'সিস্টেম প্রস্তুত', msg:toBn(state.records.length)+' টি রেকর্ড লোড হয়েছে ('+Store.mode()+')', duration:2600});
+    }
+  }catch(err){
+    toast({kind:'er', title:'সিস্টেম চালু করতে সমস্যা হয়েছে', msg:'পৃষ্ঠাটি রিফ্রেশ করে আবার চেষ্টা করুন।', duration:0});
+  }
+})();
+
+})();
+</script>
+</body>
+</html>
